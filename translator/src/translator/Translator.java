@@ -9,8 +9,9 @@ import java.io.File;
 import java.util.Scanner;
 
 /**
- *
- * @author mhowse
+ * Translator.java 
+ * @author mhowse 
+ * February 2016. 
  */
 public class Translator {
 
