@@ -115,13 +115,16 @@ public class Translator {
    */
   private String translateWord(String a, Sheet b){
     System.out.println("translateWord has been called");
+    try {
       char c=a.charAt(0); 
+      System.out.println("word starts with "+ c);
       String d =""+c;
      String e= d.toLowerCase();
       //find correct column based off first letter. 
       switch (e){
       case"a": 
       xCoordinate=1;
+      System.out.println("1st column");
       case "b":
       xCoordinate=3;
       case "c":
@@ -147,32 +150,40 @@ public class Translator {
       findLength( b, xCoordinate);
       /*keep this stuff untill the change to hash system has been completed,*/
       int h =1; 
-      System.out.println(binarySearch(a, b,1 ));
-      System.out.println("starting for loop");
-/*
-     for (int i =0; i <rowCount; i++){
-         c = b.getValueAt(1,i).toString();
-         System.out.println("for loop "+ c);
-         if (c.equals(a) ){
-             System.out.println(a+ "means "+ b.getValueAt(2,i) + "in german." );
-             break; //need to exit out of for loop here. 
-         }
-     } 
-      */
-     return d; 
+      System.out.println(binarySearch(a, b,h ));
+      return d;
+    } catch (Exception e){
+      System.out.println("error in translateWord");
+        System.out.println(e.getMessage());
+       // e.printStackTrace(); for testing and finding problems
+        System.out.println("error message end");
+      
+    }
+
+     return "Somethign went wrong"; 
   }
   
   /**Finds the length of the column of words in the dictionary.
    * 
    * @param a  the sheet that holds the words
    * @param x  the specific column. 
-   * options: hard code line lengths, have to be updated each time words are added. 
+   * The length's of the columns is stored in the 3rd cell down, just under the letter declaration.
+   * so the first word is in the 4th cell down. 
    * store line lengths in different document
+   * 
    */
   
   private void findLength(Sheet a, int x){
-      
-      
+    System.out.println("findLength Method running");
+    try {
+    String l= ""+ a.getValueAt(x, 3);
+    length =Integer.parseInt(l);
+    } catch (Exception e){
+      System.out.println("error in findLength");
+        System.out.println(e.getMessage());
+       // e.printStackTrace(); for testing and finding problems  
+        System.out.println("error messages end");
+    }
   }
   
   /**
@@ -184,6 +195,7 @@ public class Translator {
   */
   private String binarySearch(String s,Sheet b,  int a){
       String d ="This is where the search function will go"; 
+      System.out.println("binary search");
       
       return d;
   }
