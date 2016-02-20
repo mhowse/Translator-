@@ -177,7 +177,8 @@ public class Translator {
     System.out.println("findLength Method running");
     try {
     String l= ""+ a.getValueAt(x, 3);
-    length =Integer.parseInt(l);
+    int foo =Integer.parseInt(l);
+    length = foo;
     } catch (Exception e){
       System.out.println("error in findLength");
         System.out.println(e.getMessage());
