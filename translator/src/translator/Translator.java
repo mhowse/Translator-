@@ -3,35 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package translator;
-
-import java.io.File;
-import java.util.Scanner;
-
 /**
  * Translator.java 
  * @author mhowse 
  * February 2016. 
  */
-public class Translator {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-       
-} // end class
-
-/**simpleTranslator.java
-  * mhowse February  2016.
-  * 
-  */
+package translator;
 
 
-package smallprojectsgit.translator; 
-
+import java.io.File;
+import java.util.Scanner;
 import java.util.*;
 import java.io.*;
 import org.jopendocument.dom.spreadsheet.Sheet;
@@ -47,7 +28,13 @@ import org.jopendocument.dom.spreadsheet.SpreadSheet;
   */
 
 
-public class simpleTranslator {
+/**
+ * Translator.java 
+ * @author mhowse 
+ * February 2016. 
+ */
+
+public class Translator {
   private static String direction = ""; 
   private String wordToTranslate ="";
   private String currentCell = ""; 
@@ -70,7 +57,7 @@ public class simpleTranslator {
     chooseTranslation(); //set direction
     //quick fix in case user derps, only one direction atm. 
     direction = "German"; 
-    simpleTranslator simple = new simpleTranslator(direction); //create translator
+    Translator simple = new Translator(direction); //create translator
     //do i want a seperate translator for each direction? and just switch which one is being used?
     
   }
@@ -80,7 +67,7 @@ public class simpleTranslator {
    * simple translate constructor 
    * the string indicates which direction the translation will run 
    */
-  private simpleTranslator (String i ){
+  private Translator (String i ){
     if (direction.equals("German")){
       // Load the specific dictionary file.
         try{
