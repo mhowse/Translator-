@@ -43,7 +43,7 @@ public class Translator {
   private String path =""; 
   private int length=0; 
   private final int low = 4;  /*this is a hard coded number because all the lists of words start in the same row.*/ 
-  private int hight =0; 
+  private int high =0; 
   private int xCoordinate=0;
   
   
@@ -101,6 +101,8 @@ public class Translator {
   /**
    * Takes the word to be translated, searches the dictionary for it. 
    * Finds the translation of said word (in next column over) and returns that translation.
+   * @param the Sheet which contains the dictionary.
+   * @param the string that is to be translated
    * @return string that is the translation of the word 
    * 
    * To do, change the dictionary file so that the words are sorted 
@@ -149,8 +151,8 @@ public class Translator {
     
       findLength( b, xCoordinate);
       /*keep this stuff untill the change to hash system has been completed,*/
-      int h =1; 
-      System.out.println(binarySearch(a, b,h ));
+     // int h =1; was from when only one column. 
+      System.out.println(binarySearch(a, b, xCoordinate ));
       return d;
     } catch (Exception e){
       System.out.println("error in translateWord");
@@ -192,14 +194,39 @@ public class Translator {
    * Choices to be made. 
    * Do I want to use an iterative, or recursive form of binary search?
    * probably iterative. 
+   * @param String which is the word which is searched. 
+   * @param Sheet  which is the dictionary. 
+   * @param int x which is the xcoordinate of the column, tells the function which column to search. 
    * @returns the translation, or a non found message. 
   */
-  private String binarySearch(String s,Sheet b,  int a){
+  private String binarySearch(String s,Sheet b,  int x){
       String d ="This is where the search function will go"; 
       System.out.println("binary search");
-      
-      return d;
-  }
+      String currWord="";
+      int mid =0; 
+      int whileCount=0;
+ 
+      int currLow = low; 
+      System.out.println("Entering While ");
+      while (currLow <= length) {
+        System.out.println("while count = "+whileCount);
+        whileCount ++;
+          mid = (currLow + length) / 2;
+            currWord ="" +b.getValueAt(x,mid);
+          if (currWord.equals(s)) {
+            System.out.println("word found");
+            return ""+ b.getValueAt(x+1, mid); // if the word is found, return it's translation,
+            //which is in the next column over.
+          }
+                else if ( currWord.charAt(1) <s.charAt(1)){
+              currLow = mid + 1;  // this needs to be fixed because lots of words start with same first 2 letters. 
+              }
+          else
+              length =mid-1;
+      }
+      return " This word does not seem to be in the dictionary."; // value would be inserted at index "low"
+  
+  }//end binarySearch method
   
   
   /**
