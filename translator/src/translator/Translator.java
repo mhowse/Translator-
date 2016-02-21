@@ -185,7 +185,7 @@ public class Translator {
     } catch (Exception e){
       System.out.println("error in findLength");
         System.out.println(e.getMessage());
-        e.printStackTrace();// for testing and finding problems 
+        //e.printStackTrace();// for testing and finding problems 
         // so the problem is an ArrayIndexOutOfBoundsException
         
         System.out.println("error messages end");
@@ -205,8 +205,7 @@ public class Translator {
   private String binarySearch(String s,Sheet b,  int x){
       String d ="This is where the search function will go"; 
       System.out.println("binary search");
-      String currWord="";
-      int mid =0; 
+      int mid; 
       int whileCount=0;
  
       int currLow = low; 
@@ -215,7 +214,7 @@ public class Translator {
         System.out.println("while count = "+whileCount);
         whileCount ++;
           mid = (currLow + length) / 2;
-            currWord ="" +b.getValueAt(x,mid);
+           String currWord ="" +b.getValueAt(x,mid);
           if (currWord.equals(s)) {
             System.out.println("word found");
             return ""+ b.getValueAt(x+1, mid); // if the word is found, return it's translation,
