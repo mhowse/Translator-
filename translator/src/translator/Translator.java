@@ -177,18 +177,21 @@ public class Translator {
   
   private void findLength(Sheet a, int x){
     System.out.println("findLength Method running");
+   Object l;
     try {
-    String l= ""+ a.getValueAt(x, 3);
-    int foo =Integer.parseInt(l);
+     l = a.getValueAt(x, 3);
+    int foo =(Integer) l;
     length = foo;
     } catch (Exception e){
       System.out.println("error in findLength");
         System.out.println(e.getMessage());
-       // e.printStackTrace(); for testing and finding problems  
+        e.printStackTrace();// for testing and finding problems 
+        // so the problem is an ArrayIndexOutOfBoundsException
+        
         System.out.println("error messages end");
     }
   }
-  
+   
   /**
    * binary searches the correct column. 
    * Choices to be made. 
