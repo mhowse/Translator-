@@ -28,12 +28,6 @@ import org.jopendocument.dom.spreadsheet.SpreadSheet;
   */
 
 
-/**
- * Translator.java 
- * @author mhowse 
- * February 2016. 
- */
-
 public class Translator {
   private static String direction = ""; 
   private String wordToTranslate ="";
@@ -64,8 +58,9 @@ public class Translator {
   
   
   /**
-   * simple translate constructor 
+   *  translate constructor 
    * the string indicates which direction the translation will run 
+   * @param string 
    */
   private Translator (String i ){
     if (direction.equals("German")){
@@ -81,7 +76,7 @@ public class Translator {
         System.out.println("Rows :"+rowCount);
         System.out.println("Cols :"+colCount);
         // so one can iterate through each row of the selected sheet
-        //this is so one can search for the word. 
+        //this is so one can search for the word.  colcount/2 = number of letters words start with.
         //setup complete, start taking and translating words. 
     Scanner scan = new Scanner(System.in);
     System.out.println("Type in the german word, and an english translation will appear"); 
@@ -95,7 +90,7 @@ public class Translator {
        // e.printStackTrace(); for testing and finding problems
         System.out.println("error message end");
       }
-    }//if loop 
+    }//if clause ends.
   } //end method 
   
   /**
@@ -151,7 +146,6 @@ public class Translator {
     
       findLength( b, xCoordinate);
       /*keep this stuff untill the change to hash system has been completed,*/
-     // int h =1; was from when only one column. 
       System.out.println(binarySearch(a, b, xCoordinate ));
       return d;
     } catch (Exception e){
@@ -187,16 +181,15 @@ public class Translator {
         System.out.println(e.getMessage());
         //e.printStackTrace();// for testing and finding problems 
         // so the problem is an ArrayIndexOutOfBoundsException
-        
+        //test it by changing form, and seeing if one can read the cell that way. 
+        //info (translations) was  able to be pulled out of cells  earlier. 
         System.out.println("error messages end");
-    }
-  }
+    } //end catch
+  }//end method,
    
   /**
    * binary searches the correct column. 
-   * Choices to be made. 
-   * Do I want to use an iterative, or recursive form of binary search?
-   * probably iterative. 
+   * will use an iterative form of binary search. 
    * @param String which is the word which is searched. 
    * @param Sheet  which is the dictionary. 
    * @param int x which is the xcoordinate of the column, tells the function which column to search. 
@@ -253,7 +246,7 @@ public class Translator {
       System.out.println("fixed path " +replace);
      path = replace;
         return replace;
-  }
+  } //end method
   
   /** chooses which way the translation will 
     * run in, English to German v.s. German to English
@@ -263,7 +256,7 @@ public class Translator {
       System.out.println("What language do you want to translate to?");
       direction = scan.nextLine();
     }
-  }
+  }//end method
   
   
 }//end class
