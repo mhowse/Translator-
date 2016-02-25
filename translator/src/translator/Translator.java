@@ -10,6 +10,16 @@
  */
 package translator;
 
+/**
+ * TO DO
+ * problem somewhere in translator constructor OR in getPathDictionary 
+ * = this leads to the dictionary sheet not loading WHEN RUN IN NETBEANS. 
+ * dictionary sheet loads perfectly in drjava.
+ * findLength has an issue, arrayIndexOutOfBounds when reading the numerical 
+ * length value from the cells in the spread sheet. 
+ * After that binary search needs to be completed. 
+ * then the entire project needs a tidy up 
+ */
 
 import java.io.File;
 import java.util.Scanner;
