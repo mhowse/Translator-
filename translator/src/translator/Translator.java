@@ -66,8 +66,8 @@ public class Translator {
     if (direction.equals("German")){
       // Load the specific dictionary file.
         try{
-         // getPathDictionary();
-          File file = new File(getPathDictionary()); 
+          getPathDictionary();
+          File file = new File(path); 
           System.out.println("loading file");
         final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
         System.out.println("Sheet created");
@@ -230,7 +230,8 @@ public class Translator {
    * 
    */
   
-  private String getPathDictionary(){
+  private void getPathDictionary(){
+      try{
     String s=""; //adds in the path suffix to load the correct dictionary. 
     if (direction.equals ("German")){
     s = "/resources/dictionary.ods";
@@ -245,7 +246,15 @@ public class Translator {
       String replace = y.replace("\\", "/");
       System.out.println("fixed path " +replace);
      path = replace;
-        return replace;
+      } catch(Exception e){
+          System.out.println("error in getPathDictionary");
+           System.out.println(e.getMessage());
+        //e.printStackTrace();// for testing and finding problems 
+      
+        System.out.println("error messages end");
+               }
+               
+               
   } //end method
   
   /** chooses which way the translation will 
