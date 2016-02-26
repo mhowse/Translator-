@@ -75,11 +75,13 @@ public class Translator {
   private Translator (String i ){
     if (direction.equals("German")){
       // Load the specific dictionary file.
+      try{
         try{
           getPathDictionary();
           File file = new File(path); 
           System.out.println("loading file");
-        final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
+          final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
+        }
         System.out.println("Sheet created");
         colCount = sheet.getColumnCount();
         rowCount = sheet.getRowCount();
@@ -88,16 +90,16 @@ public class Translator {
         // so one can iterate through each row of the selected sheet
         //this is so one can search for the word.  colcount/2 = number of letters words start with.
         //setup complete, start taking and translating words. 
-    Scanner scan = new Scanner(System.in);
-    System.out.println("Type in the german word, and an english translation will appear"); 
-    wordToTranslate = scan.nextLine(); 
-    System.out.println(colCount +"cols accross");
-    System.out.println(rowCount+"rows down");
-    translateWord(wordToTranslate, sheet);
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Type in the german word, and an english translation will appear"); 
+        wordToTranslate = scan.nextLine(); 
+        System.out.println(colCount +"cols accross");
+        System.out.println(rowCount+"rows down");
+        translateWord(wordToTranslate, sheet);
       } catch (Exception e){
         System.out.println("error");
         System.out.println(e.getMessage());
-       // e.printStackTrace(); for testing and finding problems
+        // e.printStackTrace(); for testing and finding problems
         System.out.println("error message end");
       }
     }//if clause ends.
@@ -126,77 +128,77 @@ public class Translator {
       char c=a.charAt(0); 
       System.out.println("word starts with "+ c);
       String d =""+c;
-     String e= d.toLowerCase();
+      String e= d.toLowerCase();
       //find correct column based off first letter. 
       switch (e){
-      case"a": 
-      xCoordinate=1;
-      System.out.println("1st column");
-      case "b":
-      xCoordinate=3;
-      case "c":
-      xCoordinate=5;
-      case "d":
-      xCoordinate=7;
-      case "e":
-      xCoordinate=9;
-      case "f":
-      xCoordinate=11;
-      case "g":
-      xCoordinate=13;
-      case "h":
-      xCoordinate=15;
-      case "i":
-      xCoordinate=17;
-      case "j":
-      xCoordinate=19; //etcetera, fill out completly once the dictionary is that far. 
-      default:
-      break;
-  } // end of switch case
-    
+        case"a": 
+          xCoordinate=1;
+          System.out.println("1st column");
+        case "b":
+          xCoordinate=3;
+        case "c":
+          xCoordinate=5;
+        case "d":
+          xCoordinate=7;
+        case "e":
+          xCoordinate=9;
+        case "f":
+          xCoordinate=11;
+        case "g":
+          xCoordinate=13;
+        case "h":
+          xCoordinate=15;
+        case "i":
+          xCoordinate=17;
+        case "j":
+          xCoordinate=19; //etcetera, fill out completly once the dictionary is that far. 
+        default:
+          break;
+      } // end of switch case
+      
       findLength( b, xCoordinate);
       /*keep this stuff untill the change to hash system has been completed,*/
       System.out.println(binarySearch(a, b, xCoordinate ));
       return d;
     } catch (Exception e){
       System.out.println("error in translateWord");
-        System.out.println(e.getMessage());
-       // e.printStackTrace(); for testing and finding problems
-        System.out.println("error message end");
+      System.out.println(e.getMessage());
+      // e.printStackTrace(); for testing and finding problems
+      System.out.println("error message end");
       
     }
-
-     return "Somethign went wrong"; 
+    
+    return "Somethign went wrong"; 
   }
   
   /**Finds the length of the column of words in the dictionary.
-   * 
-   * @param a  the sheet that holds the words
-   * @param x  the specific column. 
-   * The length's of the columns is stored in the 3rd cell down, just under the letter declaration.
-   * so the first word is in the 4th cell down. 
-   * store line lengths in different document
-   * 
-   */
+    * 
+    * @param a  the sheet that holds the words
+    * @param x  the specific column. 
+    * The length's of the columns is stored in the 3rd cell down, just under the letter declaration.
+    * so the first word is in the 4th cell down. 
+    * store line lengths in different document
+    * 
+    */
   
   private void findLength(Sheet a, int x){
     System.out.println("findLength Method running");
-   Object l;
+    Object l;
     try {
-     l = a.getValueAt(x, 3);
-    int foo =(Integer) l;
-    length = foo;
+      l = a.getValueAt(x, 3);
+      int foo =(Integer) l;
+      length = foo;
     } catch (Exception e){
       System.out.println("error in findLength");
-        System.out.println(e.getMessage());
-        //e.printStackTrace();// for testing and finding problems 
-        // so the problem is an ArrayIndexOutOfBoundsException
-        //test it by changing form, and seeing if one can read the cell that way. 
-        //info (translations) was  able to be pulled out of cells  earlier. 
-        System.out.println("error messages end");
+      System.out.println(e.getMessage());
+      //e.printStackTrace();// for testing and finding problems 
+      // so the problem is an ArrayIndexOutOfBoundsException
+      //test it by changing form, and seeing if one can read the cell that way. 
+      //info (translations) was  able to be pulled out of cells  earlier. 
+      System.out.println("error messages end");
     } //end catch
   }//end method,
-   
+  
   /**
    * binary searches the correct column. 
    * will use an iterative form of binary search. 
@@ -204,33 +206,33 @@ public class Translator {
    * @param Sheet  which is the dictionary. 
    * @param int x which is the xcoordinate of the column, tells the function which column to search. 
    * @returns the translation, or a non found message. 
-  */
+   */
   private String binarySearch(String s,Sheet b,  int x){
-      String d ="This is where the search function will go"; 
-      System.out.println("binary search");
-      int mid; 
-      int whileCount=0;
- 
-      int currLow = low; 
-      System.out.println("Entering While ");
-      while (currLow <= length) {
-        System.out.println("while count = "+whileCount);
-        whileCount ++;
-          mid = (currLow + length) / 2;
-           String currWord ="" +b.getValueAt(x,mid);
-          if (currWord.equals(s)) {
-            System.out.println("word found");
-            return ""+ b.getValueAt(x+1, mid); // if the word is found, return it's translation,
-            //which is in the next column over.
-          }
-                else if ( currWord.charAt(1) <s.charAt(1)){
-              currLow = mid + 1;  // this needs to be fixed because lots of words start with same first 2 letters. 
-              }
-          else
-              length =mid-1;
+    String d ="This is where the search function will go"; 
+    System.out.println("binary search");
+    int mid; 
+    int whileCount=0;
+    
+    int currLow = low; 
+    System.out.println("Entering While ");
+    while (currLow <= length) {
+      System.out.println("while count = "+whileCount);
+      whileCount ++;
+      mid = (currLow + length) / 2;
+      String currWord ="" +b.getValueAt(x,mid);
+      if (currWord.equals(s)) {
+        System.out.println("word found");
+        return ""+ b.getValueAt(x+1, mid); // if the word is found, return it's translation,
+        //which is in the next column over.
       }
-      return " This word does not seem to be in the dictionary."; // value would be inserted at index "low"
-  
+      else if ( currWord.charAt(1) <s.charAt(1)){
+        currLow = mid + 1;  // this needs to be fixed because lots of words start with same first 2 letters. 
+      }
+      else
+        length =mid-1;
+    }
+    return " This word does not seem to be in the dictionary."; // value would be inserted at index "low"
+    
   }//end binarySearch method
   
   
@@ -241,30 +243,30 @@ public class Translator {
    */
   
   private void getPathDictionary(){
-      try{
-    String s=""; //adds in the path suffix to load the correct dictionary. 
-    if (direction.equals ("German")){
-    s = "/resources/dictionary.ods";
-    System.out.println("s is set");
-    }
-     String y =System.getProperty("user.dir");
+    try{
+      String s=""; //adds in the path suffix to load the correct dictionary. 
+      if (direction.equals ("German")){
+        s = "/resources/dictionary.ods";
+        System.out.println("s is set");
+      }
+      String y =System.getProperty("user.dir");
       System.out.println(s +"\n"+ y);
-     char c='/';
-     y+=s;
-     System.out.println(y);
-     System.out.println("c set");
+      char c='/';
+      y+=s;
+      System.out.println(y);
+      System.out.println("c set");
       String replace = y.replace("\\", "/");
       System.out.println("fixed path " +replace);
-     path = replace;
-      } catch(Exception e){
-          System.out.println("error in getPathDictionary");
-           System.out.println(e.getMessage());
-        //e.printStackTrace();// for testing and finding problems 
+      path = replace;
+    } catch(Exception e){
+      System.out.println("error in getPathDictionary");
+      System.out.println(e.getMessage());
+      //e.printStackTrace();// for testing and finding problems 
       
-        System.out.println("error messages end");
-               }
-               
-               
+      System.out.println("error messages end");
+    }
+    
+    
   } //end method
   
   /** chooses which way the translation will 
