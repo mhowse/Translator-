@@ -76,12 +76,12 @@ public class Translator {
     if (direction.equals("German")){
       // Load the specific dictionary file.
       try{
-        try{
           getPathDictionary();
+          System.out.println("Path is " +path);
           File file = new File(path); 
           System.out.println("loading file");
           final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
-        }
+        
         System.out.println("Sheet created");
         colCount = sheet.getColumnCount();
         rowCount = sheet.getRowCount();
