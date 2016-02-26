@@ -81,7 +81,6 @@ public class Translator {
           File file = new File(path); 
           System.out.println("loading file");
           final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
-        
         System.out.println("Sheet created");
         colCount = sheet.getColumnCount();
         rowCount = sheet.getRowCount();
