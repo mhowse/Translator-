@@ -136,27 +136,36 @@ public class Translator {
       switch (e){
         case"a": 
           xCoordinate=1;
-          System.out.println("1st column");
           break;
         case "b":
           xCoordinate=3;
+           break;
         case "c":
           xCoordinate=5;
+            break;
         case "d":
           xCoordinate=7;
+            break;
         case "e":
           xCoordinate=9;
+            break;
         case "f":
           xCoordinate=11;
+            break;
         case "g":
           xCoordinate=13;
+            break;
         case "h":
           xCoordinate=15;
+            break;
         case "i":
           xCoordinate=17;
+            break;
         case "j":
           xCoordinate=19; //etcetera, fill out completly once the dictionary is that far. 
-        default:
+            break;
+        default: 
+           System.out.println("default case");
           xCoordinate =1;
           break;
       } // end of switch case
