@@ -21,6 +21,7 @@ package translator;
  * then the entire project needs a tidy up 
  */
 
+import java.math.BigDecimal.*;
 import java.io.File;
 import java.util.Scanner;
 import java.util.*;
@@ -209,7 +210,7 @@ public class Translator {
       int result = 0; // we have to initialize it here!
      
 
-      int foo = ((Integer) l).intValue();
+      int foo = Integer.valueOf( l.toString());
       System.out.println("got this far");
       length = foo;
     } catch (Exception e){
