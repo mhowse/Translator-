@@ -201,9 +201,15 @@ public class Translator {
     System.out.println("findLength Method running");
     System.out.println("x = " +x);
     Object l;
+    
     try {
-      l = a.getValueAt(x, 3);
-      int foo =(int)l;
+      l = a.getValueAt(x-1, 2);
+      
+      System.out.println("got here so far l = "+ l);
+      int result = 0; // we have to initialize it here!
+     
+
+      int foo = ((Integer) l).intValue();
       System.out.println("got this far");
       length = foo;
     } catch (Exception e){
