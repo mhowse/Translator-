@@ -134,7 +134,7 @@ public class Translator {
       String e= d.toLowerCase();
       //find correct column based off first letter. 
       switch (e){
-        case"a": 
+        case"a":  
           xCoordinate=1;
           break;
         case "b":
@@ -170,6 +170,8 @@ public class Translator {
           break;
       } // end of switch case
       
+       System.out.println("Column "+xCoordinate+" words begining with " + e);
+       System.out.println("Column "+ (xCoordinate+1) +"contains their translations");
       findLength( b, xCoordinate);
       /*keep this stuff untill the change to hash system has been completed,*/
       System.out.println(binarySearch(a, b, xCoordinate ));
