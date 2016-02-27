@@ -71,15 +71,19 @@ public class Translator {
    *  translate constructor 
    * the string indicates which direction the translation will run 
    * @param string 
-   */
+   */ 
   private Translator (String i ){
     if (direction.equals("German")){
       // Load the specific dictionary file.
       try{
           getPathDictionary();
           System.out.println("Path is " +path);
-          File file = new File(path); 
+          File file = new File(path);  //this is where issue occurs
           System.out.println("loading file");
+          
+          
+          
+          
           final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
         System.out.println("Sheet created");
         colCount = sheet.getColumnCount();
@@ -133,6 +137,7 @@ public class Translator {
         case"a": 
           xCoordinate=1;
           System.out.println("1st column");
+          break;
         case "b":
           xCoordinate=3;
         case "c":
@@ -152,6 +157,7 @@ public class Translator {
         case "j":
           xCoordinate=19; //etcetera, fill out completly once the dictionary is that far. 
         default:
+          xCoordinate =1;
           break;
       } // end of switch case
       
@@ -182,6 +188,7 @@ public class Translator {
   
   private void findLength(Sheet a, int x){
     System.out.println("findLength Method running");
+    System.out.println("x = " +x);
     Object l;
     try {
       l = a.getValueAt(x, 3);
@@ -190,7 +197,7 @@ public class Translator {
     } catch (Exception e){
       System.out.println("error in findLength");
       System.out.println(e.getMessage());
-      //e.printStackTrace();// for testing and finding problems 
+      e.printStackTrace();// for testing and finding problems 
       // so the problem is an ArrayIndexOutOfBoundsException
       //test it by changing form, and seeing if one can read the cell that way. 
       //info (translations) was  able to be pulled out of cells  earlier. 
