@@ -135,38 +135,38 @@ public class Translator {
       //find correct column based off first letter. 
       switch (e){
         case"a":  
-          xCoordinate=1;
+          xCoordinate=0;
           break;
         case "b":
-          xCoordinate=3;
+          xCoordinate=2;
            break;
         case "c":
-          xCoordinate=5;
+          xCoordinate=4;
             break;
         case "d":
-          xCoordinate=7;
+          xCoordinate=6;
             break;
         case "e":
-          xCoordinate=9;
+          xCoordinate=8;
             break;
         case "f":
-          xCoordinate=11;
+          xCoordinate=10;
             break;
         case "g":
-          xCoordinate=13;
+          xCoordinate=12;
             break;
         case "h":
-          xCoordinate=15;
+          xCoordinate=14;
             break;
         case "i":
-          xCoordinate=17;
+          xCoordinate=16;
             break;
         case "j":
-          xCoordinate=19; //etcetera, fill out completly once the dictionary is that far. 
+          xCoordinate=18; //etcetera, fill out completly once the dictionary is that far. 
             break;
         default: 
            System.out.println("default case");
-          xCoordinate =1;
+          xCoordinate =0;
           break;
       } // end of switch case
       
@@ -203,7 +203,7 @@ public class Translator {
     Object l;
     
     try {
-      l = a.getValueAt(x-1, 2);
+      l = a.getValueAt(x, 2);
       
       System.out.println("got here so far l = "+ l);
       int result = 0; // we have to initialize it here!
