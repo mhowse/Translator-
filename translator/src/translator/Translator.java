@@ -255,11 +255,16 @@ public class Translator {
 }//end binarySearch method
   
   /**
-   * @param string w the word that is 
+   * @param string w the word that is in the current cell. 
    * @param string s the word that is being searched for in the dictionary. 
    * @return true if the string w is higher in alphabetical order then string w
    */
   private Boolean AlphabeticallyHigherThen( String w, String s){
+      char [] wordArray = w.toCharArray();
+      char [] sArray =s.toCharArray();
+      int wLength = wordArray.length;
+      int sLength =sArray.length;
+      
     return true;
   }
   
