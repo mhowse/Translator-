@@ -16,13 +16,13 @@ package translator;
  * = this leads to the dictionary sheet not loading WHEN RUN IN NETBEANS. 
  * dictionary sheet loads perfectly in drjava.
  * findLength has an issue, arrayIndexOutOfBounds when reading the numerical FIXED
- * length value from the cells in the spread sheet FIXED 
+ * length value from the cells in the spread sheet. 
  * After that binary search needs to be completed. 
  * then the entire project needs a tidy up 
  */
 
 import java.math.BigDecimal.*;
-import java.io.File;
+import java.io.File; 
 import java.util.Scanner;
 import java.util.*;
 import java.io.*;
@@ -217,9 +217,6 @@ public class Translator {
       System.out.println("error in findLength");
       System.out.println(e.getMessage());
       e.printStackTrace();// for testing and finding problems 
-      // so the problem is an ArrayIndexOutOfBoundsException
-      //test it by changing form, and seeing if one can read the cell that way. 
-      //info (translations) was  able to be pulled out of cells  earlier. 
       System.out.println("error messages end");
     } //end catch
   }//end method,
