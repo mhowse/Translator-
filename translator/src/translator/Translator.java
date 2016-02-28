@@ -47,7 +47,7 @@ public class Translator {
   private int colCount;
   private String path =""; 
   private int length=0; 
-  private final int low = 4;  /*this is a hard coded number because all the lists of words start in the same row.*/ 
+  private final int low = 3;  /*this is a hard coded number because all the lists of words start in the same row.*/ 
   private int high =0; 
   private int xCoordinate=0;
   
@@ -202,14 +202,10 @@ public class Translator {
     System.out.println("findLength Method running");
     System.out.println("x = " +x);
     Object l;
-    
     try {
-      l = a.getValueAt(x, 2);
-      
+      l = a.getValueAt(x, 2); 
       System.out.println("got here so far l = "+ l);
       int result = 0; // we have to initialize it here!
-     
-
       int foo = Integer.valueOf( l.toString());
       System.out.println("got this far");
       length = foo;
@@ -230,32 +226,42 @@ public class Translator {
    * @returns the translation, or a non found message. 
    */
   private String binarySearch(String s,Sheet b,  int x){
-    String d ="This is where the search function will go"; 
     System.out.println("binary search");
     int mid; 
+    int high =length+low; 
     int whileCount=0;
-    
-    int currLow = low; 
+    int currLow = low;  // low = 3 this is where the words begin. 0 based coordinates. 
+    Object word;
+    Object translation;
+    //length = the number of words in the list. 
     System.out.println("Entering While ");
-    while (currLow <= length) {
-      System.out.println("while count = "+whileCount);
-      whileCount ++;
-      mid = (currLow + length) / 2;
-      String currWord ="" +b.getValueAt(x,mid);
-      if (currWord.equals(s)) {
-        System.out.println("word found");
-        return ""+ b.getValueAt(x+1, mid); // if the word is found, return it's translation,
-        //which is in the next column over.
-      }
-      else if ( currWord.charAt(1) <s.charAt(1)){
-        currLow = mid + 1;  // this needs to be fixed because lots of words start with same first 2 letters. 
-      }
-      else
-        length =mid-1;
-    }
-    return " This word does not seem to be in the dictionary."; // value would be inserted at index "low"
-    
-  }//end binarySearch method
+    while(high >= currLow){ //while the current cell is less then the end of the list. 
+      whileCount++;
+                int guess = currLow + ((high - currLow) / 2);
+                word = b.getValueAt(x, guess); 
+                System.out.println("Current word is "+word);
+                if(word.equals(s)){
+                  translation =b.getValueAt(x+1, guess);
+                  System.out.println("translation = "+translation);
+                  return ""+translation;
+                }
+                if(AlphabeticallyHigherThen( (String)word, s)){
+                        high = guess - 1;
+                }else{ 
+                        currLow = guess + 1;
+                }
+        }
+        return "word not found in dictionary";
+}//end binarySearch method
+  
+  /**
+   * @param string w the word that is 
+   * @param string s the word that is being searched for in the dictionary. 
+   * @return true if the string w is higher in alphabetical order then string w
+   */
+  private Boolean AlphabeticallyHigherThen( String w, String s){
+    return true;
+  }
   
   
   /**
