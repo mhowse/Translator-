@@ -239,13 +239,15 @@ public class Translator {
       whileCount++;
                 int guess = currLow + ((high - currLow) / 2);
                 word = b.getValueAt(x, guess); 
+               String currWord =(String) word;
+               currWord =currWord.toLowerCase();
                 System.out.println("Current word is "+word);
-                if(word.equals(s)){
+                if(currWord.equals(s)){
                   translation =b.getValueAt(x+1, guess);
                   System.out.println("translation = "+translation);
                   return ""+translation;
                 }
-                if(AlphabeticallyHigherThen( (String)word, s)){
+                if(AlphabeticallyHigherThen( (String)currWord, s)){
                         high = guess - 1;
                 }else{ 
                         currLow = guess + 1;
