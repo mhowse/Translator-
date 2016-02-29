@@ -18,6 +18,7 @@ package translator;
  * findLength has an issue, arrayIndexOutOfBounds when reading the numerical FIXED
  * length value from the cells in the spread sheet. 
  * After that binary search needs to be completed. 
+ * AlphabeticallyHigherThen needs to be completed.
  * then the entire project needs a tidy up 
  */
 
@@ -77,15 +78,15 @@ public class Translator {
     if (direction.equals("German")){
       // Load the specific dictionary file.
       try{
-          getPathDictionary();
-          System.out.println("Path is " +path);
-          File file = new File(path);  //this is where issue occurs
-          System.out.println("loading file");
-          
-          
-          
-          
-          final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
+        getPathDictionary();
+        System.out.println("Path is " +path);
+        File file = new File(path);  //this is where issue occurs
+        System.out.println("loading file");
+        
+        
+        
+        
+        final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
         System.out.println("Sheet created");
         colCount = sheet.getColumnCount();
         rowCount = sheet.getRowCount();
@@ -140,39 +141,39 @@ public class Translator {
           break;
         case "b":
           xCoordinate=2;
-           break;
+          break;
         case "c":
           xCoordinate=4;
-            break;
+          break;
         case "d":
           xCoordinate=6;
-            break;
+          break;
         case "e":
           xCoordinate=8;
-            break;
+          break;
         case "f":
           xCoordinate=10;
-            break;
+          break;
         case "g":
           xCoordinate=12;
-            break;
+          break;
         case "h":
           xCoordinate=14;
-            break;
+          break;
         case "i":
           xCoordinate=16;
-            break;
+          break;
         case "j":
           xCoordinate=18; //etcetera, fill out completly once the dictionary is that far. 
-            break;
+          break;
         default: 
-           System.out.println("default case");
+          System.out.println("default case");
           xCoordinate =0;
           break;
       } // end of switch case
       
-       System.out.println("Column "+xCoordinate+" words begining with " + e);
-       System.out.println("Column "+ (xCoordinate+1) +"contains their translations");
+      System.out.println("Column "+xCoordinate+" words begining with " + e);
+      System.out.println("Column "+ (xCoordinate+1) +"contains their translations");
       findLength( b, xCoordinate);
       /*keep this stuff untill the change to hash system has been completed,*/
       System.out.println(binarySearch(a, b, xCoordinate ));
@@ -237,24 +238,24 @@ public class Translator {
     System.out.println("Entering While ");
     while(high >= currLow){ //while the current cell is less then the end of the list. 
       whileCount++;
-                int guess = currLow + ((high - currLow) / 2);
-                word = b.getValueAt(x, guess); 
-               String currWord =(String) word;
-               currWord =currWord.toLowerCase();
-                System.out.println("Current word is "+word);
-                if(currWord.equals(s)){
-                  translation =b.getValueAt(x+1, guess);
-                  System.out.println("translation = "+translation);
-                  return ""+translation;
-                }
-                if(AlphabeticallyHigherThen( (String)currWord, s)){
-                        high = guess - 1;
-                }else{ 
-                        currLow = guess + 1;
-                }
-        }
-        return "word not found in dictionary";
-}//end binarySearch method
+      int guess = currLow + ((high - currLow) / 2);
+      word = b.getValueAt(x, guess); 
+      String currWord =(String) word;
+      currWord =currWord.toLowerCase();
+      System.out.println("Current word is "+word);
+      if(currWord.equals(s)){
+        translation =b.getValueAt(x+1, guess);
+        System.out.println("translation = "+translation);
+        return ""+translation;
+      }
+      if(AlphabeticallyHigherThen( (String)currWord, s)){
+        high = guess - 1;
+      }else{ 
+        currLow = guess + 1;
+      }
+    }
+    return "word not found in dictionary";
+  }//end binarySearch method
   
   /**
    * @param string w the word that is in the current cell. 
@@ -262,13 +263,29 @@ public class Translator {
    * @return true if the string w is higher in alphabetical order then string w
    */
   private Boolean AlphabeticallyHigherThen( String w, String s){
-      char [] wordArray = w.toCharArray();
-      char [] sArray =s.toCharArray();
-      int wLength = wordArray.length;
-      int sLength =sArray.length;
+    char [] wordArray = w.toCharArray();
+    char [] sArray =s.toCharArray();
+    int wSize = wordArray.length-1;
+    int sSize =sArray.length-1;
+   
+    
+    for (int i =0; i<sSize; i++){//for each character in the searching string.
+      if (i<wSize && i<sSize){  // if i is within the array bounds of both arrays. 
+        char ss=sArray[i];
+        char ww =wordArray[i];
+        if (ss ==ww){ //if the characters are identical move to next character
+          
+        } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
+          return false; 
+        } else {
+          return true;
+        }
+        //what happens if both words are identical untill certain point, but then one is longer then other?
+      } 
       
-    return true;
-  }
+    }//end for loop
+    return false;
+  }//end method                            
   
   
   /**
@@ -315,4 +332,4 @@ public class Translator {
   }//end method
   
   
-}//end class
+  }//end class
