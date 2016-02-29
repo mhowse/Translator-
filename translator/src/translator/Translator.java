@@ -248,10 +248,13 @@ public class Translator {
         System.out.println("translation = "+translation);
         return ""+translation;
       }
-      if(AlphabeticallyHigherThen( (String)currWord, s)){
-        high = guess - 1;
-      }else{ 
+      if( AlphabeticallyHigherThen( (String)currWord, s)){ //if alpha returns true, then currentword is smaller, 
+        //and higher in alphabet  order then the searched for word. so you need to look further down dictionary column
         currLow = guess + 1;
+        System.out.println("alphabet method called on "+ currWord +"\tand\t"+s);
+      }else{ 
+        System.out.println("Alphabet returned false");
+        high = guess - 1;
       }
     }
     return "word not found in dictionary";
@@ -260,30 +263,32 @@ public class Translator {
   /**
    * @param string w the word that is in the current cell. 
    * @param string s the word that is being searched for in the dictionary. 
-   * @return true if the string w is higher in alphabetical order then string w
+   * @return true if the string w is higher in alphabetical order then string s
+   * so if the current cell's word is smaller then the searched word
    */
   private Boolean AlphabeticallyHigherThen( String w, String s){
     char [] wordArray = w.toCharArray();
     char [] sArray =s.toCharArray();
     int wSize = wordArray.length-1;
     int sSize =sArray.length-1;
-   
     
     for (int i =0; i<sSize; i++){//for each character in the searching string.
       if (i<wSize && i<sSize){  // if i is within the array bounds of both arrays. 
         char ss=sArray[i];
         char ww =wordArray[i];
         if (ss ==ww){ //if the characters are identical move to next character
+          System.out.println("the characters are the same");
           
         } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
+          System.out.println(ss+"\tisbiggerthen\t"+ww);
           return false; 
         } else {
           return true;
         }
         //what happens if both words are identical untill certain point, but then one is longer then other?
       } 
-      
     }//end for loop
+    System.out.println("for loop ended, default called");
     return false;
   }//end method                            
   
@@ -332,4 +337,4 @@ public class Translator {
   }//end method
   
   
-  }//end class
+}//end class
