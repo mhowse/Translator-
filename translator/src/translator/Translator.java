@@ -272,7 +272,7 @@ public class Translator {
     char [] wordArray = w.toCharArray();
     char [] sArray =s.toCharArray();
     int wSize = wordArray.length;
-    int sSize =sArray.length;
+    int sSize =sArray.length;//size of searched for word
     System.out.println("sSize = "+sSize);
     for (int i =0; i<sSize; i++){//for each character in the searching string.
       System.out.println("i = "+ i);
@@ -283,14 +283,22 @@ public class Translator {
         if (ss == ww){ //if the characters are identical move to next character
           System.out.println("the characters are the same");
           } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
-          System.out.println("Searcg string character "+ ss+"\t is bigger then\t"+ww);
+          System.out.println("Search string character "+ ss+"\t is bigger then\t"+ww);
           return true; 
         } else {
           System.out.println(ww+"\t isbiggerthen\t"+ss);
           return false;
         }
-        //what happens if both words are identical untill certain point, but then one is longer then other?
-      } 
+      } //if it is outside the bounds of one array
+        /*What happens if both words are identical untill certain point, but then one is longer then other?
+       If it gets to this code section, then that means it's been identical to here, and that 
+            sSize is bigger then wSize, and is not already shown to be  further or later in dictionary. 
+           then that means it is bigger. because it is identical to the point that wSize runs out at. 
+            For example (in english) attract and attraction. The later has an extra 3 letters. 
+      */
+         if(i>wSize){
+          return sSize >wSize;
+         }
     }//end for loop
     System.out.println("for loop ended, default called");
     return false;
@@ -322,8 +330,7 @@ public class Translator {
     } catch(Exception e){
       System.out.println("error in getPathDictionary");
       System.out.println(e.getMessage());
-      //e.printStackTrace();// for testing and finding problems 
-      
+      //e.printStackTrace();// for testing and finding problems  
       System.out.println("error messages end");
     }
     
