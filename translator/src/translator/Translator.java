@@ -267,19 +267,21 @@ public class Translator {
    * so if the current cell's word is smaller then the searched word
    */
   private Boolean AlphabeticallyHigherThen( String w, String s){
+    System.out.println("w is "+w);
+    System.out.println("s is "+s);
     char [] wordArray = w.toCharArray();
     char [] sArray =s.toCharArray();
     int wSize = wordArray.length-1;
     int sSize =sArray.length-1;
-    
+    System.out.println("sSize = "+sSize);
     for (int i =0; i<sSize; i++){//for each character in the searching string.
+      System.out.println("i = "+ i);
       if (i<wSize && i<sSize){  // if i is within the array bounds of both arrays. 
         char ss=sArray[i];
         char ww =wordArray[i];
-        if (ss ==ww){ //if the characters are identical move to next character
+        if (ss == ww){ //if the characters are identical move to next character
           System.out.println("the characters are the same");
-          
-        } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
+          } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
           System.out.println(ss+"\tisbiggerthen\t"+ww);
           return false; 
         } else {
