@@ -49,10 +49,10 @@ public class Translator {
   private String path =""; 
   private int length=0; 
   private final int low = 3;  /*this is a hard coded number because all the lists of words start in the same row.*/ 
-  private int high =0; 
+  private int high =length+low; 
   private int xCoordinate=0;
   
-  
+   
   /**main method
     * 
     * @param args 
@@ -213,7 +213,7 @@ public class Translator {
     } catch (Exception e){
       System.out.println("error in findLength");
       System.out.println(e.getMessage());
-      e.printStackTrace();// for testing and finding problems 
+      //e.printStackTrace();// for testing and finding problems 
       System.out.println("error messages end");
     } //end catch
   }//end method,
@@ -229,7 +229,7 @@ public class Translator {
   private String binarySearch(String s,Sheet b,  int x){
     System.out.println("binary search");
     int mid; 
-    int high =length+low; 
+   // int high =length+low; 
     int whileCount=0;
     int currLow = low;  // low = 3 this is where the words begin. 0 based coordinates. 
     Object word;
@@ -281,9 +281,9 @@ public class Translator {
         char ww =wordArray[i];
         System.out.println("ss = "+ss+", ww = "+ww);
         if (ss == ww){ //if the characters are identical move to next character
-          System.out.println("the characters are the same");
+          System.out.println("The characters are the same.");
           } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
-          System.out.println("Search string character "+ ss+"\t is bigger then\t"+ww);
+          System.out.println("Search string character "+ ss+" is bigger then\t"+ww);
           return true; 
         } else {
           System.out.println(ww+"\t isbiggerthen\t"+ss);
@@ -300,7 +300,7 @@ public class Translator {
           return sSize >wSize;
          }
     }//end for loop
-    System.out.println("for loop ended, default called");
+    System.out.println("for loop ended, default called.");
     return false;
   }//end method                            
   
