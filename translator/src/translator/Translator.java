@@ -271,21 +271,23 @@ public class Translator {
     System.out.println("s is "+s);
     char [] wordArray = w.toCharArray();
     char [] sArray =s.toCharArray();
-    int wSize = wordArray.length-1;
-    int sSize =sArray.length-1;
+    int wSize = wordArray.length;
+    int sSize =sArray.length;
     System.out.println("sSize = "+sSize);
     for (int i =0; i<sSize; i++){//for each character in the searching string.
       System.out.println("i = "+ i);
       if (i<wSize && i<sSize){  // if i is within the array bounds of both arrays. 
         char ss=sArray[i];
         char ww =wordArray[i];
+        System.out.println("ss = "+ss+", ww = "+ww);
         if (ss == ww){ //if the characters are identical move to next character
           System.out.println("the characters are the same");
           } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
-          System.out.println(ss+"\tisbiggerthen\t"+ww);
-          return false; 
+          System.out.println("Searcg string character "+ ss+"\t is bigger then\t"+ww);
+          return true; 
         } else {
-          return true;
+          System.out.println(ww+"\t isbiggerthen\t"+ss);
+          return false;
         }
         //what happens if both words are identical untill certain point, but then one is longer then other?
       } 
