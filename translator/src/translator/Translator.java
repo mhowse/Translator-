@@ -15,10 +15,6 @@ package translator;
  * problem somewhere in translator constructor OR in getPathDictionary 
  * = this leads to the dictionary sheet not loading WHEN RUN IN NETBEANS. 
  * dictionary sheet loads perfectly in drjava.
- * findLength has an issue, arrayIndexOutOfBounds when reading the numerical FIXED
- * length value from the cells in the spread sheet. 
- * After that binary search needs to be completed. 
- * AlphabeticallyHigherThen needs to be completed.
  * then the entire project needs a tidy up 
  */
 
@@ -32,7 +28,7 @@ import org.jopendocument.dom.spreadsheet.SpreadSheet;
 /** The translations will be done word for word, from  a stored dictionary  spreadsheet. 
   * The contents of the spread sheet will be a simplified form of the translations found in the 
   * Oxford German Mini Dictionary (Oxford University Press, 2008). 
-  * Earlier in this project we used a stored dictionary will be based on the top 50 used German words, 
+  * Earlier in this project we used a stored dictionary was based on the top 50 used German words, 
   * as found at 
   * http://www.languagedaily.com/learn-german/vocabulary/common-german-words
   * 
@@ -70,8 +66,11 @@ public class Translator {
   
   
   /**
-   *  translate constructor 
-   * the string indicates which direction the translation will run 
+   *  Translator constructor 
+   * the string indicates which direction the translation will run,
+   * At some point in the future this will be a difference between loading an english 
+   * or a german dictionary, and translating from english to german or vice versa. 
+   * At the moment however we just have the one dictionary. 
    * @param string 
    */ 
   private Translator (String i ){
@@ -82,10 +81,6 @@ public class Translator {
         System.out.println("Path is " +path);
         File file = new File(path);  //this is where issue occurs
         System.out.println("loading file");
-        
-        
-        
-        
         final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
         System.out.println("Sheet created");
         colCount = sheet.getColumnCount();
@@ -102,7 +97,7 @@ public class Translator {
         System.out.println(rowCount+"rows down");
         translateWord(wordToTranslate, sheet);
       } catch (Exception e){
-        System.out.println("error");
+        System.out.println("Error in the translator constructor");
         System.out.println(e.getMessage());
         // e.printStackTrace(); for testing and finding problems
         System.out.println("error message end");
