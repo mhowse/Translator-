@@ -332,23 +332,23 @@ public class Translator {
   
   private void getPathDictionary(){
     try{
-      String s=""; //adds in the path suffix to load the correct dictionary. 
+      String str=""; //adds in the path suffix to load the correct dictionary. 
       if (direction.equals ("German")){
-        s = "/resources/dictionary.ods";
-        System.out.println("s is set");
+        str = "/resources/dictionary.ods";
+        System.out.println("str is set");
       }
-      String y =System.getProperty("user.dir");
-      System.out.println(s +"\n"+ y);
-      char c='/';
-      y+=s;
-      System.out.println(y);
-      System.out.println("c set");
-      String replace = y.replace("\\", "/");
+      String halfpath=System.getProperty("user.dir");
+      System.out.println(str +"\n"+ halfpath);
+      char ch='/';
+      halfpath+=str;
+      System.out.println(halfpath);
+      System.out.println("ch set");
+      String replace = halfpath.replace("\\", "/");
       System.out.println("fixed path " +replace);
       path = replace;
-    } catch(Exception e){
+    } catch(Exception err){
       System.out.println("error in getPathDictionary");
-      System.out.println(e.getMessage());
+      System.out.println(err.getMessage());
       //e.printStackTrace();// for testing and finding problems  
       System.out.println("error messages end");
     }
