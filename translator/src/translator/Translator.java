@@ -47,6 +47,8 @@ public class Translator {
   private final int low = 3;  /*this is a hard coded number because all the lists of words start in the same row.*/ 
   private int high =length+low; 
   private int xCoordinate=0;
+  /* variables for the locations of particular letters in the dictionarys.*/
+  private int a,b,c,d,e,f,g,h,i,j; 
   
    
   /**main method
@@ -59,10 +61,11 @@ public class Translator {
     chooseTranslation(); //set direction
     //quick fix in case user derps, only one direction atm. 
     direction = "German"; 
-    Translator simple = new Translator(direction); //create translator
+    Translator simple = new Translator(); //create translator
     //do i want a seperate translator for each direction? and just switch which one is being used?
     
   }
+  
   
   
   /**
@@ -73,7 +76,8 @@ public class Translator {
    * At the moment however we just have the one dictionary. 
    * @param string 
    */ 
-  private Translator (String i ){
+  private Translator ( ){
+      
     if (direction.equals("German")){
       // Load the specific dictionary file.
       try{
