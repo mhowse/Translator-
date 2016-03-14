@@ -146,7 +146,7 @@ public class Translator {
    * and then call the search function. 
    * This is like a really basic hash table. 
    */
-  private String translateWord(String input, Sheet b){
+  private String translateWord(String input, Sheet sheet){
     System.out.println("translateWord has been called");
     try {
       char character=input.charAt(0); 
@@ -156,34 +156,34 @@ public class Translator {
       //find correct column based off first letter. 
       switch (result){
         case"a":  
-          xCoordinate=0;
+          xCoordinate=a;
           break;
         case "b":
-          xCoordinate=2;
+          xCoordinate=b;
           break;
         case "c":
-          xCoordinate=4;
+          xCoordinate=c;
           break;
         case "d":
-          xCoordinate=6;
+          xCoordinate=d;
           break;
         case "e":
-          xCoordinate=8;
+          xCoordinate=e;
           break;
         case "f":
-          xCoordinate=10;
+          xCoordinate=f;
           break;
         case "g":
-          xCoordinate=12;
+          xCoordinate=g;
           break;
         case "h":
-          xCoordinate=14;
+          xCoordinate=h;
           break;
         case "i":
-          xCoordinate=16;
+          xCoordinate=i;
           break;
         case "j":
-          xCoordinate=18; //etcetera, fill out completly once the dictionary is that far. 
+          xCoordinate=j; //etcetera, fill out completly once the dictionary is that far. 
           break;
         default: 
           System.out.println("default case");
