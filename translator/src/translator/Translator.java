@@ -193,13 +193,13 @@ public class Translator {
       
       System.out.println("Column "+xCoordinate+" words begining with " + e);
       System.out.println("Column "+ (xCoordinate+1) +"contains their translations");
-      findLength( b, xCoordinate);
+      findLength( sheet, xCoordinate);
       /*keep this stuff untill the change to hash system has been completed,*/
-      System.out.println(binarySearch(a, b, xCoordinate ));
-      return d;
-    } catch (Exception e){
+      System.out.println(binarySearch(input,sheet, xCoordinate ));
+      return result;
+    } catch (Exception err){
       System.out.println("error in translateWord");
-      System.out.println(e.getMessage());
+      System.out.println(err.getMessage());
       // e.printStackTrace(); for testing and finding problems
       System.out.println("error message end");
       
@@ -229,9 +229,9 @@ public class Translator {
       int foo = Integer.valueOf( l.toString());
       System.out.println("got this far");
       length = foo;
-    } catch (Exception e){
+    } catch (Exception err){
       System.out.println("error in findLength");
-      System.out.println(e.getMessage());
+      System.out.println(err.getMessage());
       //e.printStackTrace();// for testing and finding problems 
       System.out.println("error messages end");
     } //end catch
@@ -293,11 +293,11 @@ public class Translator {
     int wSize = wordArray.length;
     int sSize =sArray.length;//size of searched for word
     System.out.println("sSize = "+sSize);
-    for (int i =0; i<sSize; i++){//for each character in the searching string.
-      System.out.println("i = "+ i);
-      if (i<wSize && i<sSize){  // if i is within the array bounds of both arrays. 
-        char ss=sArray[i];
-        char ww =wordArray[i];
+    for (int ind =0; ind<sSize; ind++){//for each character in the searching string.
+      System.out.println("ind = "+ ind);
+      if (ind<wSize && ind<sSize){  // if i is within the array bounds of both arrays. 
+        char ss=sArray[ind];
+        char ww =wordArray[ind];
         System.out.println("ss = "+ss+", ww = "+ww);
         if (ss == ww){ //if the characters are identical move to next character
           System.out.println("The characters are the same.");
@@ -315,7 +315,7 @@ public class Translator {
            then that means it is bigger. because it is identical to the point that wSize runs out at. 
             For example (in english) attract and attraction. The later has an extra 3 letters. 
       */
-         if(i>wSize){
+         if(ind>wSize){
           return sSize >wSize;
          }
     }//end for loop
