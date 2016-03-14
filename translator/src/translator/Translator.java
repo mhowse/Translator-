@@ -66,6 +66,16 @@ public class Translator {
     
   }
   
+  /**
+   * setCoordinates method sets the locations at which the columns for various 
+   * letters words may be found. 
+   * 
+   */
+  private void setCoordinates(){
+      if(direction.equals("German")){
+          
+      }
+  }
   
   
   /**
@@ -77,7 +87,7 @@ public class Translator {
    * @param string 
    */ 
   private Translator ( ){
-      
+      setCoordinates();
     if (direction.equals("German")){
       // Load the specific dictionary file.
       try{
@@ -126,15 +136,15 @@ public class Translator {
    * and then call the search function. 
    * This is like a really basic hash table. 
    */
-  private String translateWord(String a, Sheet b){
+  private String translateWord(String input, Sheet b){
     System.out.println("translateWord has been called");
     try {
-      char c=a.charAt(0); 
+      char character=input.charAt(0); 
       System.out.println("word starts with "+ c);
-      String d =""+c;
-      String e= d.toLowerCase();
+      String small =""+character;
+      String result= small.toLowerCase();
       //find correct column based off first letter. 
-      switch (e){
+      switch (result){
         case"a":  
           xCoordinate=0;
           break;
