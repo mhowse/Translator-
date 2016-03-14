@@ -73,6 +73,16 @@ public class Translator {
    */
   private void setCoordinates(){
       if(direction.equals("German")){
+        a =0;
+         b=2;
+         c=4;
+         d=6;
+        e=8;
+        f=10;
+       g=12;
+       h=14;
+        i=16;
+        j=18; //etcetera, fill out completly once the dictionary is that far. 
           
       }
   }
