@@ -170,7 +170,12 @@ public class Translator {
     
     return "Somethign went wrong"; 
   }
-  
+  /**
+   * takes the character at the start of the word(as a string) and then sets the x 
+   * coord for the correct column in the dictionary. 
+   * uses a switch loop case thing to set the xCoordinate to the correct thing depending on input word. 
+   * @param str the character at the start of the word
+   */
   private void setXCoord(String str){
          //find correct column based off first letter. 
       switch (str){
