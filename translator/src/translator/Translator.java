@@ -16,6 +16,7 @@ package translator;
  * = this leads to the dictionary sheet not loading WHEN RUN IN NETBEANS. 
  * dictionary sheet loads perfectly in drjava.
  * then the entire project needs a tidy up 
+ * also, make it so that you can search another word after the first is translated
  */
 
 import java.math.BigDecimal.*;
