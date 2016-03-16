@@ -153,8 +153,27 @@ public class Translator {
       System.out.println("word starts with "+ c);
       String small =""+character;
       String result= small.toLowerCase();
-      //find correct column based off first letter. 
-      switch (result){
+      setXCoord(result);    
+      System.out.println("Column "+xCoordinate+" words begining with " + e);
+      System.out.println("Column "+ (xCoordinate+1) +"contains their translations");
+      findLength( sheet, xCoordinate);
+      /*keep this stuff untill the change to hash system has been completed,*/
+      System.out.println(binarySearch(input,sheet, xCoordinate ));
+      return result;
+    } catch (Exception err){
+      System.out.println("error in translateWord");
+      System.out.println(err.getMessage());
+      // e.printStackTrace(); for testing and finding problems
+      System.out.println("error message end");
+      
+    }
+    
+    return "Somethign went wrong"; 
+  }
+  
+  private void setXCoord(String str){
+         //find correct column based off first letter. 
+      switch (str){
         case"a":  
           xCoordinate=a;
           break;
@@ -189,24 +208,9 @@ public class Translator {
           System.out.println("default case");
           xCoordinate =0;
           break;
-      } // end of switch case
-      
-      System.out.println("Column "+xCoordinate+" words begining with " + e);
-      System.out.println("Column "+ (xCoordinate+1) +"contains their translations");
-      findLength( sheet, xCoordinate);
-      /*keep this stuff untill the change to hash system has been completed,*/
-      System.out.println(binarySearch(input,sheet, xCoordinate ));
-      return result;
-    } catch (Exception err){
-      System.out.println("error in translateWord");
-      System.out.println(err.getMessage());
-      // e.printStackTrace(); for testing and finding problems
-      System.out.println("error message end");
-      
-    }
-    
-    return "Somethign went wrong"; 
+      } // end swtich case
   }
+  
   
   /**Finds the length of the column of words in the dictionary.
     * 
