@@ -298,6 +298,7 @@ public class Translator {
    * so if the current cell's word is smaller then the searched word
    */
   private Boolean AlphabeticallyHigherThen( String w, String s){
+      System.out.println("Alphabet method running here");
     System.out.println("w is "+w);
     System.out.println("s is "+s);
     char [] wordArray = w.toCharArray();
