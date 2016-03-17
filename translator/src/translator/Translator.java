@@ -46,7 +46,7 @@ public class Translator {
   private String path =""; 
   private int length=0; 
   private final int low = 3;  /*this is a hard coded number because all the lists of words start in the same row.*/ 
-  private int high =length+low; 
+  private int high; 
   private int xCoordinate=0;
   /* variables for the locations of particular letters in the dictionarys.*/
   private int a,b,c,d,e,f,g,h,i,j; 
@@ -153,12 +153,12 @@ public class Translator {
     System.out.println("translateWord has been called");
     try {
       char character=input.charAt(0); 
-      System.out.println("word starts with "+ c);
+      System.out.println("word starts with "+ character);
       String small =""+character;
       String result= small.toLowerCase();
       setXCoord(result);    
-      System.out.println("Column "+xCoordinate+" words begining with " + e);
-      System.out.println("Column "+ (xCoordinate+1) +"contains their translations");
+      System.out.println("Column "+xCoordinate+" words begining with " + character);
+      System.out.println("Column "+ (xCoordinate+1) +" contains their translations");
       findLength( sheet, xCoordinate);
       /*keep this stuff untill the change to hash system has been completed,*/
       System.out.println(binarySearch(input,sheet, xCoordinate ));
@@ -236,10 +236,9 @@ public class Translator {
     Object l;
     try {
       l = a.getValueAt(x, 2); 
-      System.out.println("got here so far l = "+ l);
+      System.out.println("Number of words in this column  = "+ l);
       int result = 0; // we have to initialize it here!
       int foo = Integer.valueOf( l.toString());
-      System.out.println("got this far");
       length = foo;
     } catch (Exception err){
       System.out.println("error in findLength");
@@ -247,6 +246,7 @@ public class Translator {
       //e.printStackTrace();// for testing and finding problems 
       System.out.println("error messages end");
     } //end catch
+  System.out.println("length = "+length);
   }//end method,
   
   /**
@@ -260,7 +260,7 @@ public class Translator {
   private String binarySearch(String s,Sheet b,  int x){
     System.out.println("binary search");
     int mid; 
-   // int high =length+low; 
+    high =length+low;  // this is a key part, needs to be here to update length to the correct value for the column. 
     int whileCount=0;
     int currLow = low;  // low = 3 this is where the words begin. 0 based coordinates. 
     Object word;
@@ -273,20 +273,24 @@ public class Translator {
       word = b.getValueAt(x, guess); 
       String currWord =(String) word;
       currWord =currWord.toLowerCase();
+     
       System.out.println("Current word is "+word);
       if(currWord.equals(s)){
         translation =b.getValueAt(x+1, guess);
         System.out.println("translation = "+translation);
         return ""+translation;
       }
+      System.out.println("Guess = "+guess+"High =" +high);
       if( AlphabeticallyHigherThen( (String)currWord, s)){ //if alpha returns true, then currentword is smaller, 
         //and higher in alphabet  order then the searched for word. so you need to look further down dictionary column
-        currLow = guess + 1;
+        currLow = guess +1;
         System.out.println("alphabet method called on "+ currWord +"\tand\t"+s);
       }else{ 
         System.out.println("Alphabet returned false");
         high = guess - 1;
       }
+      System.out.println("End section of while loop guess = "+guess);
+              
     }
     return "word not found in dictionary";
   }//end binarySearch method
@@ -315,10 +319,11 @@ public class Translator {
         if (ss == ww){ //if the characters are identical move to next character
           System.out.println("The characters are the same.");
           } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
-          System.out.println("Search string character "+ ss+" is bigger then\t"+ww);
+          System.out.println("Search string character "+ ss+" is bigger then\t"+ww);  //so if m is bigger then f
           return true; 
         } else {
           System.out.println(ww+"\t isbiggerthen\t"+ss);
+          System.out.println("REturning false");
           return false;
         }
       } //if it is outside the bounds of one array
