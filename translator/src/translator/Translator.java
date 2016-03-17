@@ -115,15 +115,17 @@ public class Translator {
         // so one can iterate through each row of the selected sheet
         //this is so one can search for the word.  colcount/2 = number of letters words start with.
         //setup complete, start taking and translating words. 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Type in the german word, and an english translation will appear"); 
-        wordToTranslate = scan.nextLine(); 
         System.out.println(colCount +"cols accross");
         System.out.println(rowCount+"rows down");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Type in the german word, and an english translation will appear"); 
+        while (scan.hasNext()){ //
+        wordToTranslate = scan.nextLine(); 
         translateWord(wordToTranslate, sheet);
-      } catch (Exception e){
+        } //end of while section
+      } catch (Exception err){
         System.out.println("Error in the translator constructor");
-        System.out.println(e.getMessage());
+        System.out.println(err.getMessage());
         // e.printStackTrace(); for testing and finding problems
         System.out.println("error message end");
       }
