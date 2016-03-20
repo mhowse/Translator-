@@ -59,12 +59,13 @@ public class Translator {
     */
   public static void main (String [] args) throws Exception{
     System.out.println("running");
+    while(true){ //while loop so one can change between translators later, when there are dictionaries for other translations. 
     chooseTranslation(); //set direction
     //quick fix in case user derps, only one direction atm. 
     direction = "German"; 
     Translator simple = new Translator(); //create translator
     //do i want a seperate translator for each direction? and just switch which one is being used?
-    
+    }
   }
   
   
@@ -94,7 +95,7 @@ public class Translator {
    *  Translator constructor 
    * the string indicates which direction the translation will run,
    * At some point in the future this will be a difference between loading an english 
-   * or a german dictionary, and translating from English to German or vice versa. 
+   * or a german dictionary, and translating from english to german or vice versa. 
    * At the moment however we just have the one dictionary. 
    * @param string 
    */ 
