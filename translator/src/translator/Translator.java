@@ -51,7 +51,7 @@ public class Translator {
   /* variables for the locations of particular letters in the dictionarys.*/
   private int a,b,c,d,e,f,g,h,i,j; 
   
-   
+  
   /**main method
     * 
     * @param args 
@@ -67,25 +67,26 @@ public class Translator {
     
   }
   
+  
   /**
    * setCoordinates method sets the locations at which the columns for various 
    * letters words may be found. 
    * 
    */
   private void setCoordinates(){
-      if(direction.equals("German")){
-        a =0;
-         b=2;
-         c=4;
-         d=6;
-        e=8;
-        f=10;
-       g=12;
-       h=14;
-        i=16;
-        j=18; //etcetera, fill out completly once the dictionary is that far. 
-          
-      }
+    if(direction.equals("German")){
+      a =0;
+      b=2;
+      c=4;
+      d=6;
+      e=8;
+      f=10;
+      g=12;
+      h=14;
+      i=16;
+      j=18; //etcetera, fill out completly once the dictionary is that far. 
+      
+    }
   }
   
   
@@ -93,12 +94,12 @@ public class Translator {
    *  Translator constructor 
    * the string indicates which direction the translation will run,
    * At some point in the future this will be a difference between loading an english 
-   * or a german dictionary, and translating from english to german or vice versa. 
+   * or a german dictionary, and translating from English to German or vice versa. 
    * At the moment however we just have the one dictionary. 
    * @param string 
    */ 
   private Translator ( ){
-      setCoordinates();
+    setCoordinates();
     if (direction.equals("German")){
       // Load the specific dictionary file.
       try{
@@ -120,8 +121,13 @@ public class Translator {
         Scanner scan = new Scanner(System.in);
         System.out.println("Type in the german word, and an english translation will appear"); 
         while (scan.hasNext()){ //
-        wordToTranslate = scan.nextLine(); 
-        translateWord(wordToTranslate, sheet);
+          wordToTranslate = scan.nextLine(); 
+          if(wordToTranslate.equals("exit()")){ //the brackets in the exit phrase are to prevent accidently
+            //exiting while trying to search for words relating to  an egress. 
+            scan.close();
+            return;
+          }
+          translateWord(wordToTranslate, sheet);
         } //end of while section
       } catch (Exception err){
         System.out.println("Error in the translator constructor");
@@ -180,43 +186,43 @@ public class Translator {
    * @param str the character at the start of the word
    */
   private void setXCoord(String str){
-         //find correct column based off first letter. 
-      switch (str){
-        case"a":  
-          xCoordinate=a;
-          break;
-        case "b":
-          xCoordinate=b;
-          break;
-        case "c":
-          xCoordinate=c;
-          break;
-        case "d":
-          xCoordinate=d;
-          break;
-        case "e":
-          xCoordinate=e;
-          break;
-        case "f":
-          xCoordinate=f;
-          break;
-        case "g":
-          xCoordinate=g;
-          break;
-        case "h":
-          xCoordinate=h;
-          break;
-        case "i":
-          xCoordinate=i;
-          break;
-        case "j":
-          xCoordinate=j; //etcetera, fill out completly once the dictionary is that far. 
-          break;
-        default: 
-          System.out.println("default case");
-          xCoordinate =0;
-          break;
-      } // end swtich case
+    //find correct column based off first letter. 
+    switch (str){
+      case"a":  
+        xCoordinate=a;
+        break;
+      case "b":
+        xCoordinate=b;
+        break;
+      case "c":
+        xCoordinate=c;
+        break;
+      case "d":
+        xCoordinate=d;
+        break;
+      case "e":
+        xCoordinate=e;
+        break;
+      case "f":
+        xCoordinate=f;
+        break;
+      case "g":
+        xCoordinate=g;
+        break;
+      case "h":
+        xCoordinate=h;
+        break;
+      case "i":
+        xCoordinate=i;
+        break;
+      case "j":
+        xCoordinate=j; //etcetera, fill out completly once the dictionary is that far. 
+        break;
+      default: 
+        System.out.println("default case");
+        xCoordinate =0;
+        break;
+    } // end swtich case
   }
   
   
@@ -246,7 +252,7 @@ public class Translator {
       //e.printStackTrace();// for testing and finding problems 
       System.out.println("error messages end");
     } //end catch
-  System.out.println("length = "+length);
+    System.out.println("length = "+length);
   }//end method,
   
   /**
@@ -273,7 +279,7 @@ public class Translator {
       word = b.getValueAt(x, guess); 
       String currWord =(String) word;
       currWord =currWord.toLowerCase();
-     
+      
       System.out.println("Current word is "+word);
       if(currWord.equals(s)){
         translation =b.getValueAt(x+1, guess);
@@ -290,7 +296,7 @@ public class Translator {
         high = guess - 1;
       }
       System.out.println("End section of while loop guess = "+guess);
-              
+      
     }
     return "word not found in dictionary";
   }//end binarySearch method
@@ -302,7 +308,7 @@ public class Translator {
    * so if the current cell's word is smaller then the searched word
    */
   private Boolean AlphabeticallyHigherThen( String w, String s){
-      System.out.println("Alphabet method running here");
+    System.out.println("Alphabet method running here");
     System.out.println("w is "+w);
     System.out.println("s is "+s);
     char [] wordArray = w.toCharArray();
@@ -318,7 +324,7 @@ public class Translator {
         System.out.println("ss = "+ss+", ww = "+ww);
         if (ss == ww){ //if the characters are identical move to next character
           System.out.println("The characters are the same.");
-          } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
+        } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
           System.out.println("Search string character "+ ss+" is bigger then\t"+ww);  //so if m is bigger then f
           return true; 
         } else {
@@ -327,15 +333,15 @@ public class Translator {
           return false;
         }
       } //if it is outside the bounds of one array
-        /*What happens if both words are identical untill certain point, but then one is longer then other?
+      /*What happens if both words are identical untill certain point, but then one is longer then other?
        If it gets to this code section, then that means it's been identical to here, and that 
-            sSize is bigger then wSize, and is not already shown to be  further or later in dictionary. 
-           then that means it is bigger. because it is identical to the point that wSize runs out at. 
-            For example (in english) attract and attraction. The later has an extra 3 letters. 
-      */
-         if(ind>wSize){
-          return sSize >wSize;
-         }
+       sSize is bigger then wSize, and is not already shown to be  further or later in dictionary. 
+       then that means it is bigger. because it is identical to the point that wSize runs out at. 
+       For example (in english) attract and attraction. The later has an extra 3 letters. 
+       */
+      if(ind>wSize){
+        return sSize >wSize;
+      }
     }//end for loop
     System.out.println("for loop ended, default called.");
     return false;
@@ -370,8 +376,6 @@ public class Translator {
       //e.printStackTrace();// for testing and finding problems  
       System.out.println("error messages end");
     }
-    
-    
   } //end method
   
   /** chooses which way the translation will 
