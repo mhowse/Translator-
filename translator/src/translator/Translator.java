@@ -50,6 +50,14 @@ public class Translator {
   private int xCoordinate=0;
   /* variables for the locations of particular letters in the dictionarys.*/
   private int a,b,c,d,e,f,g,h,i,j; 
+  private static final String grtstring1="Welcome to Translator.java. "
+          + "This is a simple translator which currently"
+          + " runs word by word translations from german to"
+          + "   english.";
+   private static final String grtstring2="There are plans to change this and increase "
+          + "functionality in future, but for now follow the prompts and watch it work."
+          + "/n If at any point you wish to change what the translator is doing "
+           +"merely enter \"exit()\" and the program will close down the running translator.";
   
   
   /**main method
@@ -58,16 +66,20 @@ public class Translator {
     * @throws java.lang.Exception 
     */
   public static void main (String [] args) throws Exception{
-    System.out.println("running");
+    greeting();
     while(true){ //while loop so one can change between translators later, when there are dictionaries for other translations. 
     chooseTranslation(); //set direction
     //quick fix in case user derps, only one direction atm. 
     direction = "German"; 
     Translator simple = new Translator(); //create translator
     //do i want a seperate translator for each direction? and just switch which one is being used?
-    }
   }
+  }//end main method
   
+  private static void greeting(){
+      System.out.println(grtstring1);
+      System.out.println(grtstring2);
+  }
   
   /**
    * setCoordinates method sets the locations at which the columns for various 
