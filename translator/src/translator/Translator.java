@@ -19,11 +19,8 @@ package translator;
  * also, make it so that you can search another word after the first is translated
  */
 
-import java.math.BigDecimal.*;
 import java.io.File; 
 import java.util.Scanner;
-import java.util.*;
-import java.io.*;
 import org.jopendocument.dom.spreadsheet.Sheet;
 import org.jopendocument.dom.spreadsheet.SpreadSheet;
 /** The translations will be done word for word, from  a stored dictionary  spreadsheet. 
@@ -117,20 +114,13 @@ public class Translator {
       // Load the specific dictionary file.
       try{
         getPathDictionary();
-        //System.out.println("Path is " +path);
         File file = new File(path);  //this is where issue occurs
-        //System.out.println("loading file");
         final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
-        //System.out.println("Sheet created");
         colCount = sheet.getColumnCount();
         rowCount = sheet.getRowCount();
-        //System.out.println("Rows :"+rowCount);
-        //System.out.println("Cols :"+colCount);
         // so one can iterate through each row of the selected sheet
         //this is so one can search for the word.  colcount/2 = number of letters words start with.
         //setup complete, start taking and translating words. 
-        //System.out.println(colCount +"cols accross");
-        //System.out.println(rowCount+"rows down");
         Scanner scan = new Scanner(System.in);
         System.out.println("Type in the german word, and an english translation will appear"); 
         while (scan.hasNext()){ //
@@ -172,12 +162,9 @@ public class Translator {
      System.out.println("translateWord has been called");
     try {
       char character=input.charAt(0); 
-      //System.out.println("word starts with "+ character);
       String small =""+character;
       String result= small.toLowerCase();
       setXCoord(result);    
-      //System.out.println("Column "+xCoordinate+" words begining with " + character);
-     // System.out.println("Column "+ (xCoordinate+1) +" contains their translations");
       findLength( sheet, xCoordinate);
       /*keep this stuff untill the change to hash system has been completed,*/
       System.out.println(binarySearch(input,sheet, xCoordinate ));
@@ -192,7 +179,7 @@ public class Translator {
   }
   /**
    * takes the character at the start of the word(as a string) and then sets the x 
-   * coord for the correct column in the dictionary. 
+   * coordinate for the correct column in the dictionary. 
    * uses a switch loop case thing to set the xCoordinate to the correct thing depending on input word. 
    * @param str the character at the start of the word
    */
@@ -233,7 +220,7 @@ public class Translator {
         System.out.println("default case");
         xCoordinate =0;
         break;
-    } // end swtich case
+    } // end switch case
   }
   
   
@@ -241,19 +228,16 @@ public class Translator {
     * 
     * @param a  the sheet that holds the words
     * @param x  the specific column. 
-    * The length's of the columns is stored in the 3rd cell down, just under the letter declaration.
+    * The lengths of the columns is stored in the 3rd cell down, just under the letter declaration.
     * so the first word is in the 4th cell down. 
     * store line lengths in different document
     * 
     */
   
   private void findLength(Sheet a, int x){
-    System.out.println("findLength Method running");
-   // System.out.println("x = " +x);
     Object l;
     try {
       l = a.getValueAt(x, 2); 
-     // System.out.println("Number of words in this column  = "+ l);
       int result = 0; // we have to initialize it here!
       int foo = Integer.valueOf( l.toString());
       length = foo;
@@ -263,7 +247,6 @@ public class Translator {
       //e.printStackTrace();// for testing and finding problems 
       System.out.println("error messages end");
     } //end catch
-    System.out.println("length = "+length);
   }//end method,
   
   /**
@@ -282,31 +265,23 @@ public class Translator {
     int currLow = low;  // low = 3 this is where the words begin. 0 based coordinates. 
     Object word;
     Object translation;
-    //length = the number of words in the list. 
-    //System.out.println("Entering While ");
+    //length = the number of words in the list.
     while(high >= currLow){ //while the current cell is less then the end of the list. 
       whileCount++;
       int guess = currLow + ((high - currLow) / 2);
       word = b.getValueAt(x, guess); 
       String currWord =(String) word;
       currWord =currWord.toLowerCase();
-      
-      //System.out.println("Current word is "+word);
       if(currWord.equals(s)){
         translation =b.getValueAt(x+1, guess);
-        //System.out.println("translation = "+translation);
         return ""+translation;
       }
-      //System.out.println("Guess = "+guess+"High =" +high);
       if( AlphabeticallyHigherThen( (String)currWord, s)){ //if alpha returns true, then currentword is smaller, 
         //and higher in alphabet  order then the searched for word. so you need to look further down dictionary column
         currLow = guess +1;
-        //System.out.println("alphabet method called on "+ currWord +"\tand\t"+s);
       }else{ 
-        //System.out.println("Alphabet returned false");
         high = guess - 1;
       }
-      //System.out.println("End section of while loop guess = "+guess);
     }
     return "word not found in dictionary";
   }//end binarySearch method
@@ -318,32 +293,18 @@ public class Translator {
    * so if the current cell's word is smaller then the searched word
    */
   private Boolean AlphabeticallyHigherThen( String w, String s){
-    //System.out.println("Alphabet method running here");
-    //System.out.println("w is "+w);
-    //System.out.println("s is "+s);
     char [] wordArray = w.toCharArray();
     char [] sArray =s.toCharArray();
     int wSize = wordArray.length;
     int sSize =sArray.length;//size of searched for word
-    //System.out.println("sSize = "+sSize);
     for (int ind =0; ind<sSize; ind++){//for each character in the searching string.
-     // System.out.println("ind = "+ ind);
       if (ind<wSize && ind<sSize){  // if i is within the array bounds of both arrays. 
         char ss=sArray[ind];
         char ww =wordArray[ind];
-       // System.out.println("ss = "+ss+", ww = "+ww);
         if (ss == ww){ //if the characters are identical move to next character
-         // System.out.println("The characters are the same.");
         } else return (ss>ww);
          //if the search string is smaller in value =higher alphabetically 
-          //System.out.println("Search string character "+ ss+" is bigger then\t"+ww); 
-            //so if m is bigger then f
-         // return true; 
-        //} else {
-         // System.out.println(ww+"\t isbiggerthen\t"+ss);
-          //System.out.println("Returning false");
-         // return false;
-        //}
+            //so if m is bigger then f return true; 
       } //if it is outside the bounds of one array
       /*What happens if both words are identical untill certain point, but then one is longer then other?
        If it gets to this code section, then that means it's been identical to here, and that 
@@ -371,16 +332,11 @@ public class Translator {
       String str=""; //adds in the path suffix to load the correct dictionary. 
       if (direction.equals ("German")){
         str = "/resources/dictionary.ods";
-      //  System.out.println("str is set");
       }
       String halfpath=System.getProperty("user.dir");
-     // System.out.println(str +"\n"+ halfpath);
       char ch='/';
       halfpath+=str;
-      //System.out.println(halfpath);
-      //System.out.println("ch set");
       String replace = halfpath.replace("\\", "/");
-      //System.out.println("fixed path " +replace);
       path = replace;
     } catch(Exception err){
       System.out.println("error in getPathDictionary");
