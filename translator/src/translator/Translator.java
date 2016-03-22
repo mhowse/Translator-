@@ -388,12 +388,16 @@ public class Translator {
     }
   } //end method
   
-  /** chooses which way the translation will 
+  /** Chooses which way the translation will 
     * run in, English to German v.s. German to English
+    * Currently does this by running the default to english. 
+    * Later will need which language to you want to translate to -from which other language.
+    * i.e. so that one could translate from german to english, english to french, or english to german. 
     */
   private static void chooseTranslation () {
     try (Scanner scan = new Scanner (System.in)) {
-      System.out.println("What language do you want to translate to?");
+      System.out.println("What language do you want to translate from?");
+      System.out.println("This translator will then translates words in that language to english.");
       direction = scan.nextLine();
     }
   }//end method
