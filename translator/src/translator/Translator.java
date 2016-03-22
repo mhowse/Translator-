@@ -320,7 +320,7 @@ public class Translator {
   private Boolean AlphabeticallyHigherThen( String w, String s){
     //System.out.println("Alphabet method running here");
     //System.out.println("w is "+w);
-    System.out.println("s is "+s);
+    //System.out.println("s is "+s);
     char [] wordArray = w.toCharArray();
     char [] sArray =s.toCharArray();
     int wSize = wordArray.length;
@@ -334,14 +334,16 @@ public class Translator {
        // System.out.println("ss = "+ss+", ww = "+ww);
         if (ss == ww){ //if the characters are identical move to next character
          // System.out.println("The characters are the same.");
-        } else if (ss>ww){ //if the search string is smaller in value =higher alphabetically 
-          System.out.println("Search string character "+ ss+" is bigger then\t"+ww);  //so if m is bigger then f
-          return true; 
-        } else {
+        } else return (ss>ww);
+         //if the search string is smaller in value =higher alphabetically 
+          //System.out.println("Search string character "+ ss+" is bigger then\t"+ww); 
+            //so if m is bigger then f
+         // return true; 
+        //} else {
          // System.out.println(ww+"\t isbiggerthen\t"+ss);
           //System.out.println("Returning false");
-          return false;
-        }
+         // return false;
+        //}
       } //if it is outside the bounds of one array
       /*What happens if both words are identical untill certain point, but then one is longer then other?
        If it gets to this code section, then that means it's been identical to here, and that 
