@@ -14,11 +14,18 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    int days [12]={1,2,3,4,5,6,7,8,9,10,11,12};
+    char* eng_days [7] ={"Monday","Tuesday","Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    char* ger_days[7] ={"Monntag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
     char*  German [4]= {"alles","die","der","das"};
     char*  English [4]={"all","the, feminine or plural", "the, masculine","the, neuter"};
     
     return 0;
 }
 
-
+/**
+ * @param char* input, the word to be translated
+ * @param int language 1==english to german, 0 == german to english 
+ */
+void translate(char* input, int language){
+    
+}
