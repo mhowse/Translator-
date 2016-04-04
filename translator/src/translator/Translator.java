@@ -71,16 +71,56 @@ public class Translator {
     Translator simple = new Translator(); //create translator
     //do i want a seperate translator for each direction? and just switch which one is being used?
   }
-    
+    Scanner scans = new Scanner (System.in);
+    System.out.println("Now enter a 3 word sentance, such as \' ich esse Aal\' ");
+   String inp= scans.nextLine();
+    Translator trans = new Translator(inp);
   }//end main method
   
   /**
    * translator for translating simple sentances. 
    * @param sentance 
+   * @override
    */
-  private static void Translator(String sentance){
+  private  Translator(String sentance){
+      String [] sentan = sentance.split(" "); 
+      String [] answers = new String [sentan.length]; 
+      direction = "German"; 
+       setCoordinates();
+      try{
+        getPathDictionary();
+        File file = new File(path);  
+        final Sheet sheet = SpreadSheet.createFromFile(file).getSheet(0);
+        colCount = sheet.getColumnCount();
+        rowCount = sheet.getRowCount();
+        System.out.println("Sheet loaded, about to for loop");
+        for (String s:sentan){
+          System.out.println(s);
+        }
+        for(int ind =0; ind<sentan.length; ind++){
+          wordToTranslate = sentan[ind]; 
+          if(wordToTranslate.equals("exit()")){ //the brackets in the exit phrase are to prevent accidently
+            //exiting while trying to search for words relating to  an egress. 
+              state=false;
+            return;
+          }
+         answers[ind] =  translateWord(wordToTranslate, sheet);
+        } //end of for loop
+      } catch (Exception err){
+        System.out.println("Error in the translator constructor");
+        System.out.println(err.getMessage());
+        // e.printStackTrace(); for testing and finding problems
+        System.out.println("error message end");
+      }
+      System.out.println("Answers are ");
+    for(String s:answers){
+      System.out.println(s);
+    }
+  } //end method 
+  
       
-  }
+      
+  
   
   private static void greeting(){
       System.out.println(grtstring1);
@@ -170,6 +210,7 @@ public class Translator {
    */
   private String translateWord(String input, Sheet sheet){
      System.out.println("translateWord has been called");
+     input =input.toLowerCase();
     try {
       char character=input.charAt(0); 
       String small =""+character;
@@ -177,7 +218,7 @@ public class Translator {
       setXCoord(result);    
       findLength( sheet, xCoordinate);
       /*keep this stuff untill the change to hash system has been completed,*/
-      System.out.println(binarySearch(input,sheet, xCoordinate ));
+     result = binarySearch(input,sheet, xCoordinate );
       return result;
     } catch (Exception err){
       System.out.println("error in translateWord");
