@@ -15,8 +15,7 @@ package translator;
  * problem somewhere in translator constructor OR in getPathDictionary 
  * = this leads to the dictionary sheet not loading WHEN RUN IN NETBEANS. 
  * dictionary sheet loads perfectly in drjava.
- * then the entire project needs a tidy up 
- * also, make it so that you can search another word after the first is translated
+ * make it so we can translate sentances. 
  */
 
 import java.io.File; 
@@ -57,6 +56,7 @@ public class Translator {
            +"merely enter \"exit()\" and the program will close down the running translator.";
   
   
+   private static boolean state =true;
   /**main method
     * 
     * @param args 
@@ -64,14 +64,23 @@ public class Translator {
     */
   public static void main (String [] args) throws Exception{
     greeting();
-    while(true){ //while loop so one can change between translators later, when there are dictionaries for other translations. 
+    while(state){ //while loop so one can change between translators later, when there are dictionaries for other translations. 
     chooseTranslation(); //set direction
     //quick fix in case user derps, only one direction atm. 
     direction = "German"; 
     Translator simple = new Translator(); //create translator
     //do i want a seperate translator for each direction? and just switch which one is being used?
   }
+    
   }//end main method
+  
+  /**
+   * translator for translating simple sentances. 
+   * @param sentance 
+   */
+  private static void Translator(String sentance){
+      
+  }
   
   private static void greeting(){
       System.out.println(grtstring1);
@@ -127,6 +136,7 @@ public class Translator {
           wordToTranslate = scan.nextLine(); 
           if(wordToTranslate.equals("exit()")){ //the brackets in the exit phrase are to prevent accidently
             //exiting while trying to search for words relating to  an egress. 
+              state=false;
             scan.close();
             return;
           }
