@@ -78,9 +78,9 @@ public class Translator {
   }//end main method
   
   /**
-   * translator for translating simple sentances. 
+   * translator for translating simple sentences. 
    * @param sentance 
-   * @override
+   * 
    */
   private  Translator(String sentance){
       String [] sentan = sentance.split(" "); 
