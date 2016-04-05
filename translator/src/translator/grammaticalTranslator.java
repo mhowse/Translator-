@@ -45,9 +45,7 @@ public class grammaticalTranslator {
   private  grammaticalTranslator(String sentance){
       String [] sentan = sentance.split(" "); 
       String [] answers = new String [sentan.length];
-        for (String str:sentan){
-          System.out.println(str);
-        }
+        printArray(sentan);
         for(int ind =0; ind<sentan.length; ind++){
           wordToTranslate = sentan[ind]; 
           if(wordToTranslate.equals("exit()")){ //the brackets in the exit phrase are to prevent accidently
@@ -58,9 +56,7 @@ public class grammaticalTranslator {
         } //end of for loop
      
       System.out.println("translated sentance is");
-    for(String s:answers){
-      System.out.println(s);
-    }
+    printArray(answers);
     String finalSentance =grammarCheck(answers);
   } //end method 
   
@@ -70,8 +66,57 @@ public class grammaticalTranslator {
    * @return 
    */
    private String translateWord(String input){
-       return "derp"; 
+     int result =  binarySearch(german,input,0,german.length-1); 
+     if (result == -1){
+         return "Word "+input+"not found";            
+     }
+     System.out.println("result ="+result);
+       return "derp";
+       
    }// end method
+   
+   
+   private int binarySearch (String[] array, String in,int low, int high ){
+        if(high < low){
+                return -1; //impossible index for "not found"
+        }
+        int guess = (high + low) / 2;
+        if( AlphabeticallyHigherThen(array[guess], in)){
+                return binarySearch(array, in, low, guess - 1);
+        }else if(AlphabeticallyHigherThen(in, array[guess])){
+                return binarySearch(array, in, guess + 1, high);
+        }
+        return guess;
+}
+     
+  /**
+   * @param string w the word that is in the current cell. 
+   * @param string s the word that is being searched for in the dictionary. 
+   * @return true if the string w is higher in alphabetical order then string s
+   * so if the current cell's word is smaller then the searched word. 
+   * To see how this method works,see the comments on this method in Translator.java.
+   */
+  private Boolean AlphabeticallyHigherThen( String w, String s){
+    char [] wordArray = w.toCharArray();
+    char [] sArray =s.toCharArray();
+    int wSize = wordArray.length;
+    int sSize =sArray.length; //size of searched for word
+    for (int ind =0; ind<sSize; ind++){//for each character in the searching string.
+      if (ind<wSize && ind<sSize){  // if i is within the array bounds of both arrays. 
+        char ss=sArray[ind];
+        char ww =wordArray[ind];
+        if (ss == ww){ //if the characters are identical move to next character
+        } else return (ss>ww);
+         
+      } //if it is outside the bounds of one array
+      
+      if(ind>wSize){
+        return sSize >wSize;
+      }
+    }//end for loop
+    System.out.println("for loop ended, default called.");
+    return false;
+  }
    
    private String grammarCheck(String [] toBeChecked){
        return "derpypanda";
