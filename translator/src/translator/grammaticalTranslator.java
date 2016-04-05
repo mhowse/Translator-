@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class grammaticalTranslator {
 
    private static String wordToTranslate;
-   private static final String [] german = {"bin","bist", "du","ein", "ich","mag", "magst","wir" , "zwei"};
-   private static final String [] english ={"am","are", "you","one", "I", "like","like", "we", "two" };
+   private static final String [] german = {"bin","bist","drei", "du", "ein", "ich","mag", "magst","vier","wir" , "zwei"};
+   private static final String [] english ={"am","are","three", "you","one", "I", "like","like", "four","we", "two" };
    
    
    
@@ -21,13 +21,22 @@ public class grammaticalTranslator {
     */
   public static void main (String [] args) throws Exception{
     Scanner scans = new Scanner (System.in);
-    System.out.println("Now enter a 3 word sentance, such as \' ich mag du\' ");
+    System.out.println("Now enter a 3 word sentance, such as \' ich mag du\' or \'ich bin vier\' ");
     System.out.println("Using only the following words.");
-    
+    printArray(german);
      String inp= scans.nextLine();
     grammaticalTranslator trans = new grammaticalTranslator(inp);
   }//end main method
   
+  /**
+   * Will print a string array.
+   * @param array 
+   */
+  private static void printArray(String [] array){
+       for (String array1 : array) {
+           System.out.print(array1 + "\t");
+       }
+  }
   /**
    * translator for translating simple sentences. 
    * @param sentance 
