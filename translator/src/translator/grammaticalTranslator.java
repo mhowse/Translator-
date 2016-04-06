@@ -46,7 +46,9 @@ public class grammaticalTranslator {
       String [] sentan = sentance.split(" "); 
       String [] answers = new String [sentan.length];
         printArray(sentan);
-        for(int ind =0; ind<sentan.length; ind++){
+        System.out.println("for each word entered");
+        for(int ind =0; ind<sentan.length -1; ind++){
+            System.out.println("word "+ind +"is "+sentan[ind]);
           wordToTranslate = sentan[ind]; 
           if(wordToTranslate.equals("exit()")){ //the brackets in the exit phrase are to prevent accidently
             System.exit(1);
@@ -66,28 +68,43 @@ public class grammaticalTranslator {
    * @return 
    */
    private String translateWord(String input){
-     int result =  binarySearch(german,input,0,german.length-1); 
+       System.out.println("BINARY SEARCH CALLED");
+     int result =  binarySearch(german,input); 
      if (result == -1){
          return "Word "+input+"not found";            
      }
      System.out.println("result ="+result);
-       return "derp";
+       return english[result];
        
    }// end method
    
-   
-   private int binarySearch (String[] array, String in,int low, int high ){
-        if(high < low){
-                return -1; //impossible index for "not found"
+   /**
+    * Iterative  binarySearch.
+    * @param array
+    * @param in
+    * @param low
+    * @param high
+    * @return 
+    */
+   private int binarySearch (String[] array, String in ){
+       System.out.println("binaryseach called"); 
+        int high = array.length - 1;
+        int low = 0;
+        while(high >= low){
+                int guess = low + ((high - low) / 2);
+                if(array[guess].equals(in)){
+                return guess;
+                }
+                if(AlphabeticallyHigherThen( array[guess],in)){
+                        high = guess - 1;
+                }else if(AlphabeticallyHigherThen(in, array[guess])){
+                        low = guess + 1;
+                }
         }
-        int guess = (high + low) / 2;
-        if( AlphabeticallyHigherThen(array[guess], in)){
-                return binarySearch(array, in, low, guess - 1);
-        }else if(AlphabeticallyHigherThen(in, array[guess])){
-                return binarySearch(array, in, guess + 1, high);
-        }
-        return guess;
-}
+        return -1; //impossible index for "not found"
+} //end method 
+       
+
      
   /**
    * @param string w the word that is in the current cell. 
@@ -96,9 +113,17 @@ public class grammaticalTranslator {
    * so if the current cell's word is smaller then the searched word. 
    * To see how this method works,see the comments on this method in Translator.java.
    */
-  private Boolean AlphabeticallyHigherThen( String w, String s){
+  private Boolean AlphabeticallyHigherThen( String w, String s){ 
+     System.out.println("Comparing w="+w+" To s = "+s);
     char [] wordArray = w.toCharArray();
     char [] sArray =s.toCharArray();
+    //if guess = w, input = s then, if thefirst letter of 
+    //input is earlier in the alphabet then the guess
+    if(sArray[0]<wordArray[0]){
+        System.out.println("Input earlier in alphabet then guess");
+        return false;
+    }
+    
     int wSize = wordArray.length;
     int sSize =sArray.length; //size of searched for word
     for (int ind =0; ind<sSize; ind++){//for each character in the searching string.
@@ -107,14 +132,11 @@ public class grammaticalTranslator {
         char ww =wordArray[ind];
         if (ss == ww){ //if the characters are identical move to next character
         } else return (ss>ww);
-         
       } //if it is outside the bounds of one array
-      
       if(ind>wSize){
         return sSize >wSize;
       }
     }//end for loop
-    System.out.println("for loop ended, default called.");
     return false;
   }
    
