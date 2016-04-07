@@ -72,7 +72,7 @@ public class Translator {
     //do i want a seperate translator for each direction? and just switch which one is being used?
   }
     Scanner scans = new Scanner (System.in);
-    System.out.println("Now enter a 3 word sentance, such as \' ich esse Aal\' ");
+    System.out.println("Now enter a 3 word sentance, such as \' ich mag du\' ");
    String inp= scans.nextLine();
     Translator trans = new Translator(inp);
   }//end main method
@@ -194,8 +194,8 @@ public class Translator {
   /**
    * Takes the word to be translated, searches the dictionary for it. 
    * Finds the translation of said word (in next column over) and returns that translation.
-   * @param the Sheet which contains the dictionary.
-   * @param the string that is to be translated
+   * @param sheet the Sheet which contains the dictionary.
+   * @param input string that is to be translated
    * @return string that is the translation of the word 
    * 
    * To do, change the dictionary file so that the words are sorted 
@@ -395,6 +395,8 @@ public class Translator {
       //e.printStackTrace();// for testing and finding problems  
       System.out.println("error messages end");
     }
+    //quick test. 
+    path ="dictionary.ods";
   } //end method
   
   /** Chooses which way the translation will 
