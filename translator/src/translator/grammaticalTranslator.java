@@ -4,13 +4,11 @@ package translator;
 
 import java.util.Scanner;
 
-
 public class grammaticalTranslator {
 
    private static String wordToTranslate;
    private static final String [] german = {"bin","bist","drei", "du", "ein", "ich","mag", "magst","vier","wir" , "zwei"};
-   private static final String [] english ={"am","are","three", "you","one", "I", "like","like", "four","we", "two" };
-   
+   private static final String [] english ={"am","are","three", "you","one", "I", "like","like", "four","we", "two" }; 
    
    
    
@@ -20,6 +18,10 @@ public class grammaticalTranslator {
     * @throws java.lang.Exception 
     */
   public static void main (String [] args) throws Exception{
+      fillWords();
+ 
+      
+      
     Scanner scans = new Scanner (System.in);
     System.out.println("Now enter a 3 word sentance, such as \' ich mag du\' or \'ich bin vier\' ");
     System.out.println("Using only the following words.");
@@ -27,6 +29,24 @@ public class grammaticalTranslator {
      String inp= scans.nextLine();
     grammaticalTranslator trans = new grammaticalTranslator(inp);
   }//end main method
+  
+  
+  
+  /**
+   * will create a bunch of words. 
+   */
+  private  static void fillWords(){
+      String i = "am"; 
+      String t = "bin";
+      String ty = "verb";
+      String [] f = { "bin", "bist", "ist","ist", "ist", "sind," , "seid", "sind", "sind"};
+      String s = "See also have been (past tense of am), will be (future tense)";
+      englishWords  am = new englishWords(i, t,ty, f,  s );
+      
+      
+  }
+  
+  
   
   /**
    * Will print a string array.
