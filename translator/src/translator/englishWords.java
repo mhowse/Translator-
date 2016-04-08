@@ -38,4 +38,24 @@ public class englishWords{
         
     }
     
+    /**
+     * prints out the word, and all its data. 
+     */
+    public void printWord (){
+        System.out.println(name +" "+ translation );
+        System.out.println("type ="+type);
+        System.out.println("Cases = ");
+        printArray(cases);
+        
+    }
+    /**
+     * 
+     * @param array 
+     */
+     private  void printArray(String [] array){
+       for (String array1 : array) {
+           System.out.print(array1 + "\t");
+       }
+  }
+    
 }//end clas
