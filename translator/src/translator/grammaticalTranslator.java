@@ -42,7 +42,7 @@ public class grammaticalTranslator {
       String [] f = { "bin", "bist", "ist","ist", "ist", "sind," , "seid", "sind", "sind"};
       String s = "See also have been (past tense of am), will be (future tense)";
       englishWords  am = new englishWords(i, t,ty, f,  s );
-      
+      am.printWord();
       
   }
   
