@@ -21,15 +21,19 @@ public class grammaticalTranslator {
       fillWords();
  
       
-      
-    Scanner scans = new Scanner (System.in);
-    System.out.println("Now enter a 3 word sentance, such as \' ich mag du\' or \'ich bin vier\' ");
-    System.out.println("Using only the following words.");
-    printArray(german);
-     String inp= scans.nextLine();
-    grammaticalTranslator trans = new grammaticalTranslator(inp);
+    
   }//end main method
   
+  /**
+   * 
+   * @param a
+   * @param b
+   * @param c 
+   */
+  
+  private static void sentance( englishWords a, englishWords b, englishWords c){
+      
+  }
   
   
   /**
