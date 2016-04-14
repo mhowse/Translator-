@@ -25,14 +25,28 @@ public class grammaticalTranslator {
   }//end main method
   
   /**
-   * 
+   * sentance method, checks to see which sentence structure the collection of words makes, 
+   * and thus what case endings should be relevant
+   * currently checks if order is pronoun -verb- noun (he throws sticks);
+   * or definitive-adjective-noun or pronoun-verb-adjective.
    * @param a
    * @param b
    * @param c 
    */
   
   private static void sentance( englishWords a, englishWords b, englishWords c){
-      
+      if(a.type.equals("noun")){
+          if (b.type.equals("verb")){
+              if (c.type.equals("adjective")){
+                  System.out.println(a.name +"\t"+b.name+"\t"+c.name);
+                  System.out.println("Fits the patter noun -verb-adjective");
+                  System.out.println("Such as \' Bob is sad\' ");
+                  System.out.println("The translation is ");
+                  System.out.println (a.translation+" " +b.translation +" "+c.translation);
+                     
+              }
+          }
+      }
   }
   
   
@@ -47,7 +61,19 @@ public class grammaticalTranslator {
       String s = "See also have been (past tense of am), will be (future tense)";
       englishWords  am = new englishWords(i, t,ty, f,  s );
       am.printWord();
-      
+       i = "I"; 
+       t = "ich";
+       ty = "noun";
+       String [] p = { "ich", "du", "er","sie", "es", "wir," , "Ihr", "Sie", "sie"};
+       s = "See also any other pronouns";
+       englishWords  I = new englishWords(i,t,ty,p,s);
+       i = "red"; 
+       t = "rot";
+       ty = "adjective";
+       String [] pi = { "rot", "rot", "rot","rot", "rot", "rot," , "rot", "rot", "rot"};
+       s = "remembr to double check the rot/rote/rotes conversions for red adjective.";
+       englishWords  reds = new englishWords(i,t,ty,pi,s);
+        sentance(I,am,reds);        
   }
   
   
